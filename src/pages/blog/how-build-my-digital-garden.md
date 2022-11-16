@@ -5,7 +5,7 @@ description: 'The tools I used to build my digital garden quickly and easily.'
 publishedAt: '2022-04-01'
 updatedAt: '2022-11-15'
 author: 'Stiven Castillo'
-image: "/assets/images/blog/nextjs.jpg"
+heroImage: "/assets/images/blog/nextjs.jpg"
 pinned: false
 ---
 

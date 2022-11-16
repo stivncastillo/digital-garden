@@ -1,0 +1,25 @@
+---
+import type { FrontMatter } from "../../types";
+import type { MarkdownInstance } from "astro";
+import HomeSection from "./components/HomeSection.astro";
+import PostCard from "./components/PostCard";
+
+interface Props {
+  posts: MarkdownInstance<FrontMatter>[];
+}
+
+const { posts } = Astro.props;
+const pinnedPost = posts.find((post) => post.frontmatter.pinned);
+const listPost = posts.filter(post => !post.frontmatter.pinned).slice(0, 2)
+---
+
+<HomeSection
+  title="Posts Recientes"
+  showMoreHref="/blog"
+  className="flex flex-col flex-1 space-y-1"
+>
+  <div class="flex flex-col">
+    {pinnedPost && <PostCard data={pinnedPost} pinned slim />}
+    {listPost.map((post) => <PostCard data={post} slim />)}
+  </div>
+</HomeSection>

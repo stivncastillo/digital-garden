@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  showMoreHref?: string;
+  className: string;
+}
+
+const { title, showMoreHref, className } = Astro.props;
+---
+
+<section class:list={["mb-12", className]}>
+  <div class="flex flex-row justify-between items-center mb-2">
+    <h2 class="text-3xl font-bold dark:text-slate-100">{title}</h2>
+
+    {
+      showMoreHref && (
+        <a
+          href={showMoreHref}
+          class="text-sm underline text-indigo-500 dark:text-amber-400"
+        >
+          ver más
+        </a>
+      )
+    }
+  </div>
+
+  <slot />
+</section>

@@ -1,10 +1,19 @@
 ---
+import type { MarkdownInstance } from 'astro';
 import Hero from '../components/Home/Hero.astro';
+import PostsSection from '../components/Home/PostsSection.astro';
 import SocialList from '../components/Home/SocialList';
 import Layout from '../layouts/Layout.astro';
+import type { FrontMatter } from '../types';
+
+const posts = (await Astro.glob<MarkdownInstance<FrontMatter>>('./blog/**/*.{md,mdx}')).sort(
+  (a, b) => new Date(b.frontmatter.publishedAt).valueOf() - new Date(a.frontmatter.publishedAt).valueOf()
+);
 ---
 
 <Layout title="Stiven Castillo" description="Stiven Castillo es un Javascript Engineer enfócado al desarrollo Frontend.">
   <Hero />
   <SocialList />
+
+  <PostsSection posts={posts} />
 </Layout>
