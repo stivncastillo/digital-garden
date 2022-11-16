@@ -1,0 +1,370 @@
+---
+layout: '../../../layouts/BlogPostLayout.astro'
+title: 'Principios SOLID'
+description: 'Estos principios fueron Introducidos por don Robert J. Martin en el año 2000.'
+publishedAt: '2022-08-29'
+updatedAt: '2022-08-29'
+author: 'Stiven Castillo'
+image: "/assets/images/blog/solid.jpg"
+pinned: true
+---
+
+Estos principios fueron Introducidos por don Robert J. Martin en el año 2000.
+
+Los Principios SOLID son cinco principios de diseño de clases orientadas a objetos. Son un conjunto de reglas y mejores prácticas a seguir mientras se diseña una estructura de clases.
+
+A la hora de desarrollar un sistema orientado a objetos puedes usar o no estos principios, el objetivo de estos principios es darte una guía de composición de clases para sistemas escalables y limpios.
+
+Veamos de que se trata cada principio con ejemplos en `Typescript`:
+
+### S: Single responsibility / Principio de responsabilidad única
+
+> “There should never be more than one reason for a class to change.”
+
+Cada clase debería tener un solo propósito, es decir, debería encargarse de una función en el sistema, de esta forma nos podemos asegurar de que la hace muy bien.
+
+Seguir este principio conduce a un mejor mantenimiento del código y minimiza los posibles efectos secundarios.
+
+Aquí tenemos un mal ejemplo, la clase User tiene dos responsabilidades, modelar el objeto User y enviar notificaciones:
+
+```tsx
+class User {
+  public name: string;
+  public lastName: string;
+  public email: string;
+  public age: number;
+
+  // constructor y otros métodos
+
+  public notifyNewLogin(): void {
+    // proceso para notificar al correo de un nuevo inicio de sesión
+  }
+}
+```
+
+En este segundo ejemplo seguimos el principio de responsabilidad única, dónde separamos las responsabilidades y ahora tenemos dos clases que tienen diferente propósito:
+
+```tsx
+class User {
+  public name: string;
+  public lastName: string;
+  public email: string;
+  public age: number;
+
+  // constructor y otros métodos
+}
+
+class Notify {
+	public newLogin(user: User): void {
+    // proceso para notificar al usuario de un nuevo inicio de sesión
+  }
+}
+```
+
+### O: Open/Close principle / Principio de abierto/cerrado
+
+> "Una clase debe estar abierta a la ampliación pero cerrada a la modificación".
+>
+
+En lugar de sobrescribir tu clase, mejor extiéndela. Debería ser fácil extender el código con nuevas características sin tocar el código anterior. Por ejemplo, la implementación de una interfaz o clase es muy útil aquí.
+
+Con este principio nos aseguramos de que la funcionalidad básica de nuestro sistema esté protegido y sea difícil romper.
+
+El siguiente ejemplo es muy común para explicar este principio, supongamos que queremos calcular el area de algunas formas geométricas, para ello tenemos una clase llamada `AreaCalculator`.
+
+```tsx
+class Rectangle {
+  public width: number;
+  public height: number;
+
+  constructor(width: number, height: number) {
+    this.width = width;
+    this.height = height;
+  }
+}
+
+class Circle {
+  public radius: number;
+
+  constructor(radius: number) {
+    this.radius = radius;
+  }
+}
+
+class AreaCalculator {
+  public calculateRectangleArea(rectangle: Rectangle): number {
+    return rectangle.width * rectangle.height;
+  }
+
+  public calculateCircleArea(circle: Circle): number {
+    return Math.PI * (circle.radius * circle.radius);
+```
+
+El anterior ejemplo es una mala implementación de este principio, que pasa si en el futuro queremos agregar otra forma geométrica? debemos agregar una nueva clase por ejemplo `Triangle` y modificar la clase `AreaCalculator` e ir agregando métodos.
+
+Para seguir el Principio de Open/Closed, añadimos una interfaz llamada `Shape`, de modo que cada clase de forma (Rectángulo, Círculo, etc.) puede depender de esta interfaz implementándola. De esta manera, podemos simplificar la clase `AreaCalculator` a una sola función, que toma un argumento, y este argumento se basa en la interfaz que acabamos de crear.
+
+```tsx
+interface Shape {
+  calculateArea(): number;
+}
+
+class Rectangle implements Shape {
+  public width: number;
+  public height: number;
+
+  constructor(width: number, height: number) {
+    this.width = width;
+    this.height = height;
+  }
+
+  public calculateArea(): number {
+    return this.width * this.height;
+  }
+}
+
+class Circle implements Shape {
+  public radius: number;
+
+  constructor(radius: number) {
+    this.radius = radius;
+  }
+
+  public calculateArea(): number {
+    return Math.PI * (this.radius * this.radius);
+  }
+}
+
+class AreaCalculator {
+  public calculateArea(shape: Shape): number {
+    return shape.calculateArea();
+  }
+}
+```
+
+### L: **Principio de sustitución de Liskov**
+
+> "Las funciones que utilizan punteros o referencias a las clases base deben poder utilizar objetos de las clases derivadas sin saberlo".
+
+Idealmente, las instancias padre deberían ser capaces de reemplazar a sus instancias hijo sin crear ningún comportamiento inesperado o misterioso.
+
+Este principio es algo complicado de entender y de seguir, el siguiente ejemplo de mala implementación nos dará una luz:
+
+```tsx
+class Rectangle {
+  constructor(private width: number, private length: number) {}
+
+  public setWidth(width: number) {
+    this.width = width;
+  }
+
+  public setLength(length: number) {
+    this.length = length;
+  }
+
+  public getArea() {
+    return this.width * this.length;
+  }
+}
+
+class Square extends Rectangle {
+  constructor(side: number) {
+    super(side, side);
+  }
+
+  public setWidth(width: number) {
+    // A square must maintain equal sides
+    super.setWidth(width);
+    super.setLength(width);
+  }
+
+  public setLength(length: number) {
+    super.setWidth(length);
+    super.setLength(length);
+  }
+}
+```
+
+Ahora si queremos usar el `Rectangle` (o `Square`) en un test:
+
+```tsx
+const rect: Rectangle = new Square(10); // Puede ser un Rentangle o un Square
+rect.setWidth(20);
+expect(rect.getArea()).toBe(200); // ❌ Si rect es un cuadrado, el área es 400
+```
+
+El rectángulo asume un área de 200. El cuadrado rompe ese comportamiento al esperar un área de 400. Por lo tanto, Rectángulo y Cuadrado no son sustituibles.
+
+Aunque este diseño sigue siendo útil, no supera la prueba de Liskov y pierde las ventajas mencionadas anteriormente.
+
+Una posible solución sería abstraer una nueva clase Shape:
+
+```tsx
+interface Shape {
+  getArea: () => number;
+}
+
+interface Rectangle extends Shape {
+  width: number;
+  length: number;
+}
+
+interface Square extends Shape {
+  sides: number;
+}
+```
+
+Ahora, Shape es sustituible tanto por `Rectangle` como por `Square`, porque ninguno de los dos sub-tipos rompe el comportamiento definido por Shape.
+
+Como habrás notado, evitar la herencia es una forma de evitar violaciones de la LSP. Lo cual es otro ejemplo de composición sobre herencia.
+
+### I: **Principio de segregación de la interfaz / Interface Segregation Principle**
+
+> "Muchas interfaces específicas para el cliente son mejores que una interfaz de uso general".
+>
+
+El principio nos indica que una clase debe de implementar únicamente las interfaces que necesita, es decir, que no necesite tener que implementar métodos que no utilice
+
+Tenemos una clase llamada `Troll`, que implementa una interfaz llamada `Character`. Pero como nuestro troll no puede nadar ni hablar, esta interfaz `Character` no parece ser la adecuada para nuestra clase.
+
+```tsx
+interface Character {
+  shoot(): void;
+  swim(): void;
+  talk(): void;
+  dance(): void;
+}
+
+class Troll implements Character {
+  public shoot(): void {
+    // codigo...
+  }
+
+  public swim(): void {
+    // un troll no puede nadar
+  }
+
+  public talk(): void {
+    // un troll no puede hablar
+  }
+
+  public dance(): void {
+    // código...
+  }
+}
+```
+
+Entonces, ¿qué podemos hacer al respecto siguiendo este principio específico? Eliminamos la interfaz `Character` y dividimos sus características en cuatro interfaces en su lugar y dependemos nuestra clase `Troll` sólo de estas interfaces, que necesitamos.
+
+```tsx
+interface Talker {
+  talk(): void;
+}
+
+interface Shooter {
+  shoot(): void;
+}
+
+interface Swimmer {
+  swim(): void;
+}
+
+interface Dancer {
+  dance(): void;
+}
+
+class Troll implements Shooter, Dancer {
+  public shoot(): void {
+    // código...
+  }
+
+  public dance(): void {
+    // código...
+  }
+}
+```
+
+### D: **Principio de inversión de dependencia / Dependency Inversion Principle (DIP)**
+
+> "Depende de las abstracciones, [no] de las concreciones".
+>
+
+Este principio nos pide que las clases nunca dependan de otras clases y que toda esta relación debe estar en una abstracción. Este principio tiene dos reglas:
+
+1. Los módulos de alto nivel no deben de depender de módulos de bajo nivel. Esta lógica debe de estar en una abstracción.
+2. Las abstracciones no deben de depender de detalles. Los detalles deberían depender de abstracciones.
+
+Vamos a explicar un poco en este mal ejemplo, tenemos una clase `SoftwareProject`, que inicializa las clases `FrontendDeveloper` y `BackendDeveloper`.
+
+```tsx
+class FrontendDeveloper {
+  public writeHtmlCode(): void {
+    // código...
+  }
+}
+
+class BackendDeveloper {
+  public writePythonCode(): void {
+    // código...
+  }
+}
+
+class SoftwareProject {
+  public frontendDeveloper: FrontendDeveloper;
+  public backendDeveloper: BackendDeveloper;
+
+  constructor() {
+    this.frontendDeveloper = new FrontendDeveloper();
+    this.backendDeveloper = new BackendDeveloper();
+  }
+
+  public createProject(): void {
+    this.frontendDeveloper.writeHtmlCode();
+    this.backendDeveloper.writePythonCode();
+  }
+}
+```
+
+Este es el camino es equivocado ya que estas dos clases son muy similares. Es decir, harán cosas similares. Así que hay una mejor manera de cumplir con los requisitos para lograr el objetivo del Principio de Inversión de Dependencia.
+
+En primer lugar, creamos una interfaz llamada `Developer`. Como `FrontendDeveloper` y `BackendDeveloper` son clases similares, dependemos de ellas en la interfaz `Developer`.
+
+En lugar de inicializar `FrontendDeveloper` y `BackendDeveloper` de una sola manera dentro de la clase `SoftwareProject`, los tomamos como una lista para iterar a través de ellos para llamar a cada método `develop()`.
+
+```tsx
+interface Developer {
+  develop(): void;
+}
+
+class FrontendDeveloper implements Developer {
+  public develop(): void {
+    this.writeHtmlCode();
+  }
+
+  private writeHtmlCode(): void {
+    // código...
+  }
+}
+
+class BackendDeveloper implements Developer {
+  public develop(): void {
+    this.writePythonCode();
+  }
+
+  private writePythonCode(): void {
+    // código...
+  }
+}
+
+class SoftwareProject {
+  public developers: Developer[];
+
+  public createProject(): void {
+    this.developers.forEach((developer: Developer) => {
+      developer.develop();
+    });
+  }
+}
+```
+
+Y esos fueron los 5 principios de SOLID.

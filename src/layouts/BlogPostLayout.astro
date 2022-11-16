@@ -1,0 +1,84 @@
+---
+import BaseHead from "../components/Layout/BaseHead.astro";
+import Footer from "../components/Layout/Footer.astro";
+import Navbar from "../components/Layout/Navbar.astro";
+import format from "date-fns/format";
+
+import type { MarkdownLayoutProps } from "astro";
+
+export interface FronMatter {
+  title: string;
+  description: string;
+  author: string;
+  publishedAt?: string;
+  updatedAt?: string;
+  heroImage?: string;
+  pinned?: boolean;
+}
+
+type Props = MarkdownLayoutProps<FronMatter>;
+
+const {
+  frontmatter: {
+    title,
+    description,
+    publishedAt,
+    updatedAt,
+    heroImage,
+    pinned,
+    author,
+  },
+} = Astro.props;
+
+const date = publishedAt
+  ? format(new Date(publishedAt), "MMMM dd, yyyy")
+  : "--";
+---
+
+<html lang="en">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      image={heroImage}
+      contentType="article"
+    />
+  </head>
+
+  <body>
+    <div class="flex flex-col m-auto h-screen">
+      <Navbar />
+
+      <main
+        class="flex flex-col mx-auto max-w-4xl pt-12 px-4 md:px-8 mb-8 flex-grow w-full"
+      >
+        <article>
+          <header class="mb-4">
+            <h1 class="mb-2">{title}</h1>
+            <p
+              class="mb-8 text-xl text-slate-500 dark:text-slate-400 leading-relaxed"
+            >
+              {description}
+            </p>
+            <div class="flex flex-row justify-between items-end">
+              <span class="text-sm text-slate-400">Stiven Castillo</span>
+              <div class="flex flex-row items-center space-x-2">
+                <span class="dark:text-slate-500 text-slate-400 text-xs">
+                  <!-- {readingTime.text} --> 3minutos perro
+                </span>
+                <span class="text-slate-400 text-sm">{date}</span>
+              </div>
+            </div>
+            <hr class="border-slate-200 dark:border-slate-700 my-2" />
+          </header>
+
+          <div id="blog-layout">
+            <slot />
+          </div>
+        </article>
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>
