@@ -1,0 +1,86 @@
+---
+layout: '../../../layouts/BlogPostLayout.astro'
+title: 'Typescript'
+publishedAt: '2022-05-07'
+description: 'Typescript tips and tricks'
+category: 'Code'
+author: 'Stiven Castillo'
+---
+
+## Elegir algunas propiedades con Pick
+
+Typescript es muy poderoso en términos de comprobación de tipos, pero a veces se vuelve tedioso cuando algunos tipos son subconjuntos
+de otros tipos y necesitas definir la comprobación de tipos para ellos.
+
+Tomemos un ejemplo, tenemps 2 tipos de respuesta:
+
+```ts
+interface UserResponse {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  age: number;
+}
+```
+
+```ts
+interface SignInResponse {
+  id: number;
+  name: string;
+  token: string;
+}
+```
+
+En lugar de definir tipos del mismo contexto SignInResponse y UserResponse,
+podemos definir el tipo para UserResponse y elegir algunas propiedades para SignInResponse.
+
+```ts
+interface SignInResponse extends Pick<UserResponse, "id" | "name"> {
+  token: string;
+};
+```
+
+## Uppercase / Lowercase
+
+```ts
+type Role = "admin" | "user" | "guest";
+type UppercaseRole = Uppercase<Role>; // "ADMIN" | "USER" | "GUEST"
+
+type Role = "ADMIN" | "USER" | "GUEST";
+type LowercaseRole = Lowercase<Role>; // "admin" | "user" | "guest"
+```
+
+Lo mismo sería con `Capitalize` y `Uncapitalize`
+
+## Propiedades opcionales con Partial
+
+Construye un tipo con todas las propiedades de Type establecidas como opcionales.
+
+```ts
+interface Product {
+  name: string;
+  price: number;
+  units: number;
+}
+
+type PartialProduct = Partial<Product>;
+```
+
+Para el efecto contrario se usa `Required<Product>`
+
+## Record
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  lastName: string
+}
+interface Book {
+  createdBy: User;
+  updatedBy: User;
+}
+// Alternativa
+type BookRecord = Record<"createdBy" | "updatedBy", User>;
+```

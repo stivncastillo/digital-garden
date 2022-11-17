@@ -1,3 +1,4 @@
+// For blog post
 export interface FrontMatter {
   title: string;
   description: string;
@@ -7,4 +8,13 @@ export interface FrontMatter {
   heroImage?: string;
   pinned?: boolean;
   lang?: string;
+  tags?: string[]
+}
+
+// For notes
+export interface NotesFrontMatter {
+  title: string;
+  description: string;
+  author: string;
+  publishedAt: string;
 }

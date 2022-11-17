@@ -7,6 +7,12 @@ updatedAt: '2022-11-15'
 author: 'Stiven Castillo'
 heroImage: "/assets/images/blog/nextjs.jpg"
 pinned: false
+tags:
+  - nextjs
+  - obsidian
+  - tailwindcss
+  - astro
+  - 'digital garden'
 ---
 
 When I started to create my [digital garden](/blog/what-is-digital-gardens)  I had many doubts about how to build it, at the begining I wanted to use some boilerplate I found on GitHub, but I did not want to work with a structure that I was not used to, I was convinced that I wanted to do something that would scale with my ideas (you can't imagine how many times I have created projects for my personal web 😅).Taking advantage of the fact that I was watching the [Nextjs](https://platzi.com/cursos/next/) course in Platzi and that in the company where I work we were about to start a project in the same technology, I did it.

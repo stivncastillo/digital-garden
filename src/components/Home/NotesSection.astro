@@ -1,0 +1,32 @@
+---
+import format from 'date-fns/format'
+import type { NotesFrontMatter } from "../../types";
+import type { MarkdownInstance } from "astro";
+import HomeSection from "./components/HomeSection.astro";
+
+interface Props {
+  notes: MarkdownInstance<NotesFrontMatter>[];
+}
+
+const { notes } = Astro.props;
+const listNotes = notes.slice(0, 6)
+---
+
+<HomeSection
+  title="Last Notes"
+  showMoreHref="/notes"
+  className="flex flex-col flex-1 space-y-1"
+>
+<ul class="grid grid-cols-1 md:grid-cols-3 gap-2">
+  {listNotes.map(({ url, frontmatter: {title, publishedAt} }) => (
+    <li>
+        <a href={url} class="flex flex-col py-3 px-5 border-none rounded-md bg-slate-100/80 hover:bg-slate-100/100 dark:bg-slate-800/90 dark:hover:bg-slate-800/80 transition duration-150">
+          <span>{title}</span>
+          <span class="text-slate-400 text-sm">
+            {format(new Date(publishedAt), 'd MMM yyyy')}
+          </span>
+        </a>
+    </li>
+  ))}
+</ul>
+</HomeSection>

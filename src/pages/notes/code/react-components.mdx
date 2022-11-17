@@ -1,0 +1,148 @@
+---
+layout: '../../../layouts/BlogPostLayout.astro'
+title: 'React - Components'
+publishedAt: '2022-05-02'
+description: 'Componentes que voy creando y puedo reusarlos en multiples proyectos'
+category: 'Code'
+author: 'Stiven Castillo'
+---
+
+A veces creo estructura de componentes para proyectos en los que trabajo, pero con el tiempo
+olvido cómo los hice, por eso dejo esto y de una vez los comparto.
+
+<TOCInline toc={toc} fromHeading={2} toHeading={2} indentDepth={4} />
+
+## Iconos dinámicos
+
+Los iconos en formato `svg` los tengo guardados en una carpeta `assets/icons`.
+
+Creo un archivo `iconNames.ts` que contiene los nombres de los iconos (El nombre de los iconos es el mismo que en el archivo svg):
+
+```ts
+export type iconName =
+  | 'icon_phone',
+  | 'icon_home',
+  ...
+```
+
+Archivo de los patchs de los iconos `iconPaths.ts`:
+
+
+```ts
+import IconPhone from './assets/icons/icon_phone.svg';
+...
+
+interface PathsTypes {
+  [key: string]: any;
+}
+
+export const allPaths: PathsTypes = {
+  icon_phone: IconPhone,
+  ...
+}
+```
+
+Y por último el componente `Icon.tsx`:
+
+```ts
+import React from 'react';
+import { allIcons } from './iconNames';
+import { allPaths } from './iconPaths';
+
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  name: allIcons;
+  color?: string;
+  width?: number;
+  height?: number;
+}
+
+const Icon: React.FC<Props> = ({ name, color = "#009933", width = 15, height = 15, ...props }) => {
+  const DynamicIcon = allPaths[name];
+
+  return (
+    DynamicIcon ?
+      <DynamicIcon width={width} height={height} color={color} {...props} />
+      : null
+  )
+}
+
+export default Icon
+```
+
+## Componentes poliformicos
+
+La propiedad `as` se ha vuelto muy popular al construir componentes
+polifórmicos en React. Lo que permite esa propiedad es que podamos
+definir qué etiqueta HTML se pinte al renderizar el componente.
+
+```typescript
+import React from "react";
+
+type Rainbow =
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "indigo"
+  | "violet";
+
+type AsProp<C extends React.ElementType> = {
+  as?: C;
+};
+
+type PropsToOmit<C extends React.ElementType, P> = keyof (AsProp<C> & P);
+
+// This is the first reusable type utility we built
+type PolymorphicComponentProp<
+  C extends React.ElementType,
+  Props = {}
+> = React.PropsWithChildren<Props & AsProp<C>> &
+  Omit<React.ComponentPropsWithoutRef<C>, PropsToOmit<C, Props>>;
+
+// This is a new type utitlity with ref!
+type PolymorphicComponentPropWithRef<
+  C extends React.ElementType,
+  Props = {}
+> = PolymorphicComponentProp<C, Props> & { ref?: PolymorphicRef<C> };
+
+// This is the type for the "ref" only
+type PolymorphicRef<C extends React.ElementType> =
+  React.ComponentPropsWithRef<C>["ref"];
+
+/**
+* This is the updated component props using PolymorphicComponentPropWithRef
+*/
+type TextProps<C extends React.ElementType> =
+PolymorphicComponentPropWithRef<
+  C,
+  { color?: Rainbow | "black" }
+>;
+
+/**
+* This is the type used in the type annotation for the component
+*/
+type TextComponent = <C extends React.ElementType = "span">(
+  props: TextProps<C>
+) => React.ReactElement | null;
+
+export const Text: TextComponent = React.forwardRef(
+  <C extends React.ElementType = "span">(
+    { as, color, children }: TextProps<C>,
+    ref?: PolymorphicRef<C>
+  ) => {
+    const Component = as || "span";
+
+    const style = color ? { style: { color } } : {};
+
+    return (
+      <Component {...style} ref={ref}>
+        {children}
+      </Component>
+    );
+  }
+);
+
+```
+
+Post link: https://blog.logrocket.com/build-strongly-typed-polymorphic-components-react-typescript/
