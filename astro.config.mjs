@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import markdownConfig from './markdown.config'
+import markdownConfig from './markdown.config.mjs';
 
 // https://astro.build/config
 import tailwind from "@astrojs/tailwind";

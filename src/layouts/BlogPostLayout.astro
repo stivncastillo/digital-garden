@@ -16,8 +16,8 @@ const {
     publishedAt,
     updatedAt,
     heroImage,
-    pinned,
     author,
+    minutesRead,
     lang = 'en'
   },
 } = Astro.props;
@@ -56,7 +56,7 @@ const date = publishedAt
               <span class="text-sm text-slate-400">Stiven Castillo</span>
               <div class="flex flex-row items-center space-x-2">
                 <span class="dark:text-slate-500 text-slate-400 text-xs">
-                  <!-- {readingTime.text} --> 3minutos perro
+                  {minutesRead}
                 </span>
                 <span class="text-slate-400 text-sm">{date}</span>
               </div>

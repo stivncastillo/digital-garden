@@ -1,8 +1,9 @@
 import remarkToc from "remark-toc";
 import rehypeToc from "rehype-toc";
+import { remarkReadingTime } from './plugins/remark-reading-time.mjs';
 
 export default {
-  remarkPlugins: [[remarkToc, { tight: true, ordered: true }]],
+  remarkPlugins: [[remarkToc, { tight: true, ordered: true }], remarkReadingTime],
   rehypePlugins: [
     [
       rehypeToc,

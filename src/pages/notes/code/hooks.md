@@ -1,16 +1,13 @@
 ---
 layout: '../../../layouts/BlogPostLayout.astro'
-title: 'Hooks'
+title: 'React Hooks'
 publishedAt: '2021-02-28'
-description: 'Hooks y recomendaciones que voy encontrando por la web en el día a día.'
+description: 'Custom hooks and tricks about it.'
 category: 'Code'
 author: 'Stiven Castillo'
 ---
 
-<TOCInline toc={toc} fromHeading={3} toHeading={4} indentDepth={4} />
-
-
-### useTimeout
+## useTimeout
 
 ```js
 import React from 'react';
@@ -32,7 +29,7 @@ export default function useTimeout(callback, delay) {
 };
 ```
 
-Uso:
+How to use:
 
 ```js {3-5} showLineNumbers
 function App() {
@@ -50,10 +47,10 @@ function App() {
 }
 
 ```
-### Usar useRef en lugar de useState
+## Use useRef instead useState
 
-Para evitar re-renders en el componente es una buena alternativa usar *useRef* cómo en
-este ejemplo creando un componente input:
+To avoid re-renders in the component it is a good alternative to use *useRef* as in
+this example creating an input component:
 
 ```tsx
 const CustomInput: React.FC = () => {
@@ -69,7 +66,7 @@ const CustomInput: React.FC = () => {
 }
 ```
 
-En este ejemplo, cada pulsación de tecla se volverá a renderizar debido al cambio de estado con el evento onChange.
+In this example, each keystroke will be re-rendered due to the change of state with the onChange event.
 
 ```tsx
 const CustomInput: React.FC = () => {
@@ -82,4 +79,4 @@ const CustomInput: React.FC = () => {
 }
 ```
 
-En este ejemplo, lo que se escribe en la entrada se puede leer usando la referencia de entrada. Este enfoque evita la re-renderización innece saria en cada pulsación de tecla.
+In this example, what is written to the input can be read using the input reference. This approach avoids unnecessary re-rendering at each keystroke.

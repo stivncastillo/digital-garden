@@ -4,6 +4,7 @@ export interface FrontMatter {
   description: string;
   author: string;
   publishedAt: string;
+  minutesRead: string;
   updatedAt?: string;
   heroImage?: string;
   pinned?: boolean;
@@ -17,4 +18,5 @@ export interface NotesFrontMatter {
   description: string;
   author: string;
   publishedAt: string;
+  minutesRead: string;
 }

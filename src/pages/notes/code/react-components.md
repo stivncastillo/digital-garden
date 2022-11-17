@@ -2,80 +2,74 @@
 layout: '../../../layouts/BlogPostLayout.astro'
 title: 'React - Components'
 publishedAt: '2022-05-02'
-description: 'Componentes que voy creando y puedo reusarlos en multiples proyectos'
+description: "Structures or components that I've created and seem interesting to me"
 category: 'Code'
 author: 'Stiven Castillo'
 ---
 
-A veces creo estructura de componentes para proyectos en los que trabajo, pero con el tiempo
-olvido cómo los hice, por eso dejo esto y de una vez los comparto.
 
-<TOCInline toc={toc} fromHeading={2} toHeading={2} indentDepth={4} />
+## Dynamic icons
 
-## Iconos dinámicos
+The svg icons are kept on `assets/icons` folder
 
-Los iconos en formato `svg` los tengo guardados en una carpeta `assets/icons`.
+  * Create an file `iconNames.ts` it contains the icons name.
 
-Creo un archivo `iconNames.ts` que contiene los nombres de los iconos (El nombre de los iconos es el mismo que en el archivo svg):
+  ```ts
+  export type iconName =
+    | 'icon_phone',
+    | 'icon_home',
+    ...
+  ```
 
-```ts
-export type iconName =
-  | 'icon_phone',
-  | 'icon_home',
+  * Create paths icons file `iconPaths.ts`:
+
+
+  ```ts
+  import IconPhone from './assets/icons/icon_phone.svg';
   ...
-```
 
-Archivo de los patchs de los iconos `iconPaths.ts`:
+  interface PathsTypes {
+    [key: string]: any;
+  }
 
+  export const allPaths: PathsTypes = {
+    icon_phone: IconPhone,
+    ...
+  }
+  ```
+
+  * And finally, create icon component `Icon.tsx`:
+
+  ```ts
+  import { allIcons } from './iconNames';
+  import { allPaths } from './iconPaths';
+
+  export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+    name: allIcons;
+    color?: string;
+    width?: number;
+    height?: number;
+  }
+
+  const Icon: React.FC<Props> = ({ name, color = "#009933", width = 15, height = 15, ...props }) => {
+    const DynamicIcon = allPaths[name];
+
+    return (
+      DynamicIcon ?
+        <DynamicIcon width={width} height={height} color={color} {...props} />
+        : null
+    )
+  }
+
+  export default Icon
+  ```
+
+## Polyformic components
+
+The `as` property has become very popular when building polyformic components in React.
+What this property allows is that we can define which HTML tag is painted when rendering the component.
 
 ```ts
-import IconPhone from './assets/icons/icon_phone.svg';
-...
-
-interface PathsTypes {
-  [key: string]: any;
-}
-
-export const allPaths: PathsTypes = {
-  icon_phone: IconPhone,
-  ...
-}
-```
-
-Y por último el componente `Icon.tsx`:
-
-```ts
-import React from 'react';
-import { allIcons } from './iconNames';
-import { allPaths } from './iconPaths';
-
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  name: allIcons;
-  color?: string;
-  width?: number;
-  height?: number;
-}
-
-const Icon: React.FC<Props> = ({ name, color = "#009933", width = 15, height = 15, ...props }) => {
-  const DynamicIcon = allPaths[name];
-
-  return (
-    DynamicIcon ?
-      <DynamicIcon width={width} height={height} color={color} {...props} />
-      : null
-  )
-}
-
-export default Icon
-```
-
-## Componentes poliformicos
-
-La propiedad `as` se ha vuelto muy popular al construir componentes
-polifórmicos en React. Lo que permite esa propiedad es que podamos
-definir qué etiqueta HTML se pinte al renderizar el componente.
-
-```typescript
 import React from "react";
 
 type Rainbow =

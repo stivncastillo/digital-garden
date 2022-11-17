@@ -7,12 +7,11 @@ category: 'Code'
 author: 'Stiven Castillo'
 ---
 
-## Elegir algunas propiedades con Pick
+## Choose some properties with Pick
 
-Typescript es muy poderoso en términos de comprobación de tipos, pero a veces se vuelve tedioso cuando algunos tipos son subconjuntos
-de otros tipos y necesitas definir la comprobación de tipos para ellos.
+Typescript is very powerful in terms of type checking, but sometimes it gets tedious when some types are subsets of other types and you need to define type checking for them.
 
-Tomemos un ejemplo, tenemps 2 tipos de respuesta:
+Let's take an example, we have 2 types of response:
 
 ```ts
 interface UserResponse {
@@ -32,8 +31,7 @@ interface SignInResponse {
 }
 ```
 
-En lugar de definir tipos del mismo contexto SignInResponse y UserResponse,
-podemos definir el tipo para UserResponse y elegir algunas propiedades para SignInResponse.
+Instead of defining types of the same context `SignInResponse` and `UserResponse`, we can define the type for `UserResponse` and choose some properties for `SignInResponse`. Let's see:
 
 ```ts
 interface SignInResponse extends Pick<UserResponse, "id" | "name"> {
@@ -53,9 +51,9 @@ type LowercaseRole = Lowercase<Role>; // "admin" | "user" | "guest"
 
 Lo mismo sería con `Capitalize` y `Uncapitalize`
 
-## Propiedades opcionales con Partial
+## Optional properties with Partial
 
-Construye un tipo con todas las propiedades de Type establecidas como opcionales.
+Creates a type with all properties of Type set as optional.
 
 ```ts
 interface Product {
@@ -65,9 +63,16 @@ interface Product {
 }
 
 type PartialProduct = Partial<Product>;
+
+// It's like to do
+interface PartialProduct {
+  name?: string;
+  price?: number;
+  units?: number;
+}
 ```
 
-Para el efecto contrario se usa `Required<Product>`
+For the opposite effect is used `Required<Product>`
 
 ## Record
 
@@ -81,6 +86,6 @@ interface Book {
   createdBy: User;
   updatedBy: User;
 }
-// Alternativa
+
 type BookRecord = Record<"createdBy" | "updatedBy", User>;
 ```
