@@ -1,5 +1,5 @@
 ---
-layout: '../../layouts/BlogPostLayout.astro'
+layout: '@layouts/BlogPostLayout.astro'
 title: 'How I built my Digital garden?'
 description: 'The tools I used to build my digital garden quickly and easily.'
 publishedAt: '2022-04-01'

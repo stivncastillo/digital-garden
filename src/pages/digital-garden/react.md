@@ -1,5 +1,5 @@
 ---
-layout: '../../../layouts/BlogPostLayout.astro'
+layout: '@layouts/BlogPostLayout.astro'
 title: 'React'
 publishedAt: '2022-05-12'
 description: 'Tips generales de la librería'

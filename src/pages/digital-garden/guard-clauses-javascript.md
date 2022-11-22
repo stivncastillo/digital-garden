@@ -1,5 +1,5 @@
 ---
-layout: "../../../layouts/BlogPostLayout.astro"
+layout: "@layouts/BlogPostLayout.astro"
 title: "Guard clauses in javascript"
 publishedAt: "2022-09-27"
 description: "The Guard clauses are a great alternative to if...else statements."

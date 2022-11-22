@@ -1,5 +1,5 @@
 ---
-layout: '../../../layouts/BlogPostLayout.astro'
+layout: '@layouts/BlogPostLayout.astro'
 title: 'CSS Recipes'
 publishedAt: '2022-10-03'
 description: 'Useful CSS techniques, tricks and snippets'

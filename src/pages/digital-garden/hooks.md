@@ -1,5 +1,5 @@
 ---
-layout: '../../../layouts/BlogPostLayout.astro'
+layout: '@layouts/BlogPostLayout.astro'
 title: 'React Hooks'
 publishedAt: '2021-02-28'
 description: 'Custom hooks and tricks about it.'

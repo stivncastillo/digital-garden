@@ -1,5 +1,5 @@
 ---
-layout: '../../../layouts/BlogPostLayout.astro'
+layout: '@layouts/BlogPostLayout.astro'
 title: 'React - Components'
 publishedAt: '2022-05-02'
 description: "Structures or components that I've created and seem interesting to me"

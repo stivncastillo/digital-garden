@@ -1,5 +1,5 @@
 ---
-layout: '../../../layouts/BlogPostLayout.astro'
+layout: '@layouts/BlogPostLayout.astro'
 title: 'Typescript'
 publishedAt: '2022-05-07'
 description: 'Typescript tips and tricks'

@@ -9,7 +9,7 @@ const { title, showMoreHref, className } = Astro.props;
 ---
 
 <section class:list={["mb-12", className]}>
-  <div class="flex flex-row justify-between items-center mb-2">
+  <div class="flex flex-row justify-between items-center mb-4">
     <h2 class="text-3xl font-bold dark:text-slate-100">{title}</h2>
 
     {
@@ -18,7 +18,7 @@ const { title, showMoreHref, className } = Astro.props;
           href={showMoreHref}
           class="text-sm underline text-indigo-500 dark:text-amber-400"
         >
-          ver más
+          show more
         </a>
       )
     }

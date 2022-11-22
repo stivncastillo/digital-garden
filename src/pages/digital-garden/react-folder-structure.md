@@ -1,5 +1,5 @@
 ---
-layout: '../../../layouts/BlogPostLayout.astro'
+layout: '@layouts/BlogPostLayout.astro'
 title: 'React - Folder structure'
 publishedAt: '2022-04-13'
 description: 'Looking for the right way to order my application in react '

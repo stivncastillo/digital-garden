@@ -8,6 +8,7 @@ module.exports = {
       fontFamily: {
         'code': ['Fira Code', 'Roboto Mono', 'monospace'],
       },
+      translate: ['group-hover', 'hover'],
     },
   },
   plugins: [],
