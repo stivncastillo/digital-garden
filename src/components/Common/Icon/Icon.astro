@@ -1,0 +1,41 @@
+---
+// @ts-ignore
+import { parse } from 'node-html-parser';
+
+export interface Props {
+  icon: string;
+  fill?: string;
+  class?: string;
+}
+
+function getSVG(name: string) {
+  const filepath = `./icons/${name}.svg`;
+  const files = import.meta.globEager<string>('./icons/**/*.svg', {
+    as: 'raw',
+  });
+
+  if (!(filepath in files)) {
+    throw new Error(`${filepath} not found`);
+  }
+
+  const root = parse(files[filepath]);
+
+  const svg = root.querySelector('svg');
+  const { attributes, innerHTML } = svg;
+
+  return {
+    attributes,
+    innerHTML,
+  };
+}
+
+const { icon, ...attributes } = Astro.props as Props;
+const { attributes: baseAttributes, innerHTML } = getSVG(icon);
+
+const svgAttributes = { ...baseAttributes, ...attributes };
+---
+
+<svg
+  {...svgAttributes}
+  set:html={innerHTML}
+></svg>

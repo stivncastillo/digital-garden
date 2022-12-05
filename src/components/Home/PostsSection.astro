@@ -14,11 +14,10 @@ const listPost = posts.filter(post => !post.frontmatter.pinned).slice(0, 2)
 ---
 
 <HomeSection
-  title="Last Posts"
-  showMoreHref="/blog"
-  className="flex flex-col flex-1 space-y-1"
+  title="Lastest Posts"
+  className="flex flex-col flex-1"
 >
-  <div class="flex flex-col">
+  <div class="flex flex-row gap-6">
     {pinnedPost && <PostCard data={pinnedPost} pinned slim />}
     {listPost.map((post) => <PostCard data={post} slim />)}
   </div>

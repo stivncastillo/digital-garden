@@ -4,7 +4,6 @@
 
 @layer base {
   body {
-    @apply bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-50;
     font-family: 'Open Sans', 'Merriweather Sans', sans-serif;
     font-size: 16px;
   }

@@ -1,20 +1,23 @@
-<div class="flex flex-col space-y-4 md:space-y-0 md:flex-row items-center p-2 md:px-8 md:py-4 w-full max-w-4xl mx-auto">
-  <div>
-    Logo
-  </div>
+---
+import Icon from "@components/Common/Icon/Icon.astro";
+import NavbarLink from "@components/Common/Links/NavbarLink.astro";
+---
+
+<div
+  class="flex flex-col space-y-4 md:space-y-0 md:flex-row items-center p-2 md:px-0 md:py-4 w-full max-w-4xl mx-auto mb-4"
+>
   <nav class="flex-1">
-    <ul class="flex space-x-4 justify-end">
+    <ul class="flex flex-row space-x-4 justify-start ml-[-0.7rem]">
       <li>
-          <a
-          href="/"
-            class={`cursor-pointer relative before:bg-indigo-500 before:content-[''] before:absolute before:w-full before:h-1 before:rounded-sm before:bottom-0 before:left-0 before:origin-right before:scale-x-0 before:transition before:duration-150 before:ease-out hover:before:origin-left hover:before:scale-x-100 text-slate-900 dark:text-slate-50 p-2`}
-          >
-            Home
-          </a>
+        <NavbarLink href="/" name="Home" />
       </li>
-      <!-- <li class="flex items-center">
-        {theme && <ThemeButton theme={theme} onClick={handleChangeTheme} />}
-      </li> -->
+      <li>
+        <NavbarLink href="/blog" name="Blog" />
+      </li>
     </ul>
   </nav>
+
+  <button class="bg bg-indigo-900/80 rounded-md p-2">
+    <Icon icon="light_icon" class="dark:fill-white w-5 h-5" />
+  </button>
 </div>

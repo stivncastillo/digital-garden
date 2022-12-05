@@ -1,0 +1,18 @@
+---
+interface Props {
+  name: string
+  href: string
+}
+
+const { href, name } = Astro.props;
+---
+
+<a
+  href={href}
+  class="text-gray-800 dark:text-white hidden group sm:block p-1 sm:px-3 sm:py-2 duration-300 ease-in-out transition-all"
+>
+  <span
+    class="capsize bg-left-bottom bg-gradient-to-r from-dark-grey to-dark-black dark:from-fuchsia-500 dark:to-cyan-300 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
+    >{name}</span
+  >
+</a>

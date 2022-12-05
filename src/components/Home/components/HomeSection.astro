@@ -10,19 +10,21 @@ const { title, showMoreHref, className } = Astro.props;
 
 <section class:list={["mb-12", className]}>
   <div class="flex flex-row justify-between items-center mb-4">
-    <h2 class="text-3xl font-bold dark:text-slate-100">{title}</h2>
-
-    {
-      showMoreHref && (
-        <a
-          href={showMoreHref}
-          class="text-sm underline text-indigo-500 dark:text-amber-400"
-        >
-          show more
-        </a>
-      )
-    }
+    <h2 class="text-4xl font-bold dark:text-slate-100">{title}</h2>
   </div>
 
   <slot />
+
+  {
+    showMoreHref && (
+      <div class="block text-center mt-5">
+        <a
+          href={showMoreHref}
+          class="text-sm underline text-indigo-400"
+        >
+          show more
+        </a>
+        </div>
+    )
+  }
 </section>

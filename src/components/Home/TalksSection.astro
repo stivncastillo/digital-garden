@@ -1,0 +1,45 @@
+---
+import HomeSection from "./components/HomeSection.astro";
+import type { TalksJson } from "src/pages/index.astro";
+
+interface Props {
+  talks: TalksJson;
+}
+
+const { talks } = Astro.props;
+const videos = talks.filter(talk => talk.videoId !== "").splice(0, 2);
+const videosTitle = videos.map(video => video.title)
+const restTalks = talks.filter(talk => !videosTitle.includes(talk.title) );
+---
+
+<HomeSection title="Last Talks" className="flex flex-col flex-1">
+  <span class="block mb-4">My talks are in Spanish</span>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center">
+    {videos.map(video => (
+      <iframe
+        class="object-contain aspect-video"
+        src={`https://www.youtube.com/embed/${video.videoId}`}
+        title="video123"
+        name="video123"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope;
+    picture-in-picture"
+        aria-hidden="true"
+        allowfullscreen=""
+        width="100%"
+        height="100%"
+        frameborder="0"></iframe>
+    ))}
+  </div>
+
+  <div class="mt-8">
+    <p>I have done some other talks. The best ones are:</p>
+    <ul class="list-disc list-inside">
+
+      {restTalks.map(talk => (
+        <li>{talk.title} - <a class="link" href={talk.link} target="_blank">{talk.videoId ?'video link' : 'slides link'}</a></li>
+      ))}
+
+    </ul>
+  </div>
+</HomeSection>

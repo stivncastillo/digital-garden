@@ -9,7 +9,7 @@ export interface FrontMatter {
   heroImage?: string;
   pinned?: boolean;
   lang?: string;
-  tags?: string[]
+  tags?: string[];
 }
 
 // For notes
@@ -19,4 +19,11 @@ export interface NotesFrontMatter {
   author: string;
   publishedAt: string;
   minutesRead: string;
+}
+
+export interface Talk {
+  title: string;
+  link: string;
+  videoId: string;
+  date: string;
 }

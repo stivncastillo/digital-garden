@@ -6,6 +6,9 @@ import PostsSection from '../components/Home/PostsSection.astro';
 import SocialList from '../components/Home/SocialList';
 import Layout from '../layouts/Layout.astro';
 import type { FrontMatter, NotesFrontMatter } from '../types';
+import talks from '../data/talks.json';
+import TalksSection from '@components/Home/TalksSection.astro';
+export type TalksJson = typeof talks;
 
 const posts = (await Astro.glob<MarkdownInstance<FrontMatter>>('./blog/**/*.{md,mdx}')).sort(
   (a, b) => new Date(b.frontmatter.publishedAt).valueOf() - new Date(a.frontmatter.publishedAt).valueOf()
@@ -18,8 +21,8 @@ const notes = (await Astro.glob<MarkdownInstance<NotesFrontMatter>>('./digital-g
 
 <Layout title="Home" description="Stiven Castillo es un Javascript Engineer enfócado al desarrollo Frontend.">
   <Hero />
-  <SocialList />
-
+  <!-- <SocialList /> -->
   <PostsSection posts={posts} />
   <NotesSection notes={notes} />
+  <TalksSection talks={talks} />
 </Layout>
