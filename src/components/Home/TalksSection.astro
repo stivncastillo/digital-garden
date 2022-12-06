@@ -12,9 +12,7 @@ const videosTitle = videos.map(video => video.title)
 const restTalks = talks.filter(talk => !videosTitle.includes(talk.title) );
 ---
 
-<HomeSection title="Last Talks" className="flex flex-col flex-1">
-  <span class="block mb-4">My talks are in Spanish</span>
-
+<HomeSection title="Latest Talks" className="flex flex-col flex-1">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center">
     {videos.map(video => (
       <iframe
