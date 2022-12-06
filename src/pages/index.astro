@@ -3,7 +3,6 @@ import type { MarkdownInstance } from 'astro';
 import Hero from '../components/Home/Hero.astro';
 import NotesSection from '../components/Home/NotesSection.astro';
 import PostsSection from '../components/Home/PostsSection.astro';
-import SocialList from '../components/Home/SocialList';
 import Layout from '../layouts/Layout.astro';
 import type { FrontMatter, NotesFrontMatter } from '../types';
 import talks from '../data/talks.json';
@@ -21,7 +20,6 @@ const notes = (await Astro.glob<MarkdownInstance<NotesFrontMatter>>('./digital-g
 
 <Layout title="Home" description="Stiven Castillo es un Javascript Engineer enfócado al desarrollo Frontend.">
   <Hero />
-  <!-- <SocialList /> -->
   <PostsSection posts={posts} />
   <NotesSection notes={notes} />
   <TalksSection talks={talks} />

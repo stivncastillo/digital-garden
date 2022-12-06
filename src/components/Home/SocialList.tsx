@@ -14,55 +14,52 @@ type Social = {
   icon: any;
 };
 
+const SIZE_ICONS = 22;
+
 const SOCIAL_ITEMS: Array<Social> = [
   {
     name: "Twitter",
     url: "https://twitter.com/stivncastillo_",
-    icon: <IoLogoTwitter size={19} />,
+    icon: <IoLogoTwitter size={SIZE_ICONS} />,
   },
   {
     name: "Github",
     url: "https://github.com/stivncastillo",
-    icon: <IoLogoGithub size={19} />,
+    icon: <IoLogoGithub size={SIZE_ICONS} />,
   },
   {
     name: "Linkedin",
     url: "https://linkedin.com/in/stivncastillo/",
-    icon: <IoLogoLinkedin size={19} />,
+    icon: <IoLogoLinkedin size={SIZE_ICONS} />,
   },
   {
     name: "Dribbble",
     url: "https://dribbble.com/stivncastillo",
-    icon: <IoLogoDribbble size={19} />,
+    icon: <IoLogoDribbble size={SIZE_ICONS} />,
   },
   {
     name: "E-mail",
     url: "mailto:stivencastillo.90@gmail.com",
-    icon: <IoIosMail size={19} />,
+    icon: <IoIosMail size={SIZE_ICONS} />,
   },
 ];
 
 const SocialList = () => {
   return (
-    <section className="flex flex-col flex-1 space-y-1 mb-8">
-      <span className="text-slate-400 dark:text-slate-500 text-xs">
-        Follow me
-      </span>
-      <ul className="flex flex-row space-y-1 md:space-y-0 md:space-x-4">
-        {SOCIAL_ITEMS.map(({ url, icon }) => (
-          <li>
-            <a
-              href={url}
-              target="_blank"
-              className="text-slate-500 dark:dark:text-slate-300 hover:text-slate-700 dark:hover:text-slate-500 font-bold flex flex-row items-center w-max"
-              rel="noreferrer"
-            >
-              {icon}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <ul className="fixed bottom-0 left-8 after:bg-white after:block after:content-[''] after:w-px after:h-20 after:my-0 after:mx-auto transition-all ease-linear duration-300">
+      {SOCIAL_ITEMS.map(({ url, icon }) => (
+        <li className="group">
+          <a
+            href={url}
+            target="_blank"
+            className="text-slate-100 font-bold flex flex-row items-center w-max last:mb-4 group-hover:scale-125 group-hover:rotate-3 transition-all duration-150 ease-linear"
+            rel="noreferrer"
+          >
+            {icon}
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 };
 

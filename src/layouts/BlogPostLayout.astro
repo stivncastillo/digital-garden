@@ -6,6 +6,7 @@ import format from "date-fns/format";
 
 import type { MarkdownLayoutProps } from "astro";
 import type { FrontMatter } from "../types";
+import SocialList from "@components/Home/SocialList";
 
 type Props = MarkdownLayoutProps<FrontMatter>;
 
@@ -68,9 +69,10 @@ const date = publishedAt
             <slot />
           </div>
         </article>
+        <Footer />
       </main>
 
-      <Footer />
+      <SocialList />
     </div>
   </body>
 </html>
