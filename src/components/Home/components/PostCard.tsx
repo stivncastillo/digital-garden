@@ -22,12 +22,12 @@ const PostCard = ({ pinned, slim, data }: Props) => {
   return (
     <article className="relative group mb-6 w-full h-full">
       <a
-        className="h-full block transition-all duration-150 hover:-translate-x-2 hover:-translate-y-2 z-10 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md p-0.5"
+        className="h-full block transition-all duration-150 hover:-translate-x-2 hover:-translate-y-2 z-10 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md p-1"
         href={url}
       >
         <div className="flex flex-row space-x-4 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-50 rounded-md p-4 h-full">
           <div className="flex flex-col justify-between">
-            <h3 className="text-lg mb-1 mt-0 font-bold dark:text-slate-100  group-hover:underline">
+            <h3 className="text-lg mb-1 mt-0 font-normal dark:text-slate-100  group-hover:underline">
               {title}
             </h3>
 

@@ -18,9 +18,11 @@ function getSVG(name: string) {
     throw new Error(`${filepath} not found`);
   }
 
+// @ts-ignore
   const root = parse(files[filepath]);
 
   const svg = root.querySelector('svg');
+// @ts-ignore
   const { attributes, innerHTML } = svg;
 
   return {

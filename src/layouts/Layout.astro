@@ -1,5 +1,6 @@
 ---
 import SocialList from '@components/Home/SocialList';
+import ThemeScript from '@components/Layout/ThemeScript.astro';
 import BaseHead from '../components/Layout/BaseHead.astro';
 import Footer from '../components/Layout/Footer.astro';
 import Navbar from '../components/Layout/Navbar.astro';
@@ -13,7 +14,7 @@ const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" style="color-scheme: dark;">
+<html lang="en" style="color-scheme: light;">
   <head>
     <BaseHead title={title} description={description} />
   </head>
@@ -27,5 +28,7 @@ const { title, description } = Astro.props;
       </main>
       <SocialList />
     </div>
+
+    <ThemeScript />
   </body>
 </html>
