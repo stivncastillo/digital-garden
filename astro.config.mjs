@@ -11,18 +11,18 @@ import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
+import sitemap from "@astrojs/sitemap";
+
+// https://astro.build/config
 export default defineConfig({
+  site: 'https://stiven.dev',
   markdown: markdownConfig,
-  integrations: [
-    tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
-    }),
-    react(),
-    mdx({
-      ...markdownConfig,
-      extendPlugins: false,
-    }),
-  ]
+  integrations: [tailwind({
+    config: {
+      applyBaseStyles: false
+    }
+  }), react(), mdx({
+    ...markdownConfig,
+    extendPlugins: false
+  }), sitemap()]
 });

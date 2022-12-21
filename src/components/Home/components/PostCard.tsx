@@ -1,5 +1,5 @@
 import React from "react";
-import format from "date-fns/format";
+import { format } from "date-fns";
 import type { FrontMatter } from "../../../types";
 import type { MarkdownInstance } from "astro";
 
@@ -35,7 +35,7 @@ const PostCard = ({ pinned, slim, data }: Props) => {
           </div>
         </div>
       </a>
-      <div className="absolute top-0 bottom-0 right-0 left-0 group-hover:border-slate-900 group-hover:dark:border-white border-2 border-dashed rounded-md -z-10"></div>
+      <div className="absolute top-0 bottom-0 right-0 left-0 group-hover:border-slate-900 dark:group-hover:border-white border-2 border-dashed rounded-md -z-10"></div>
     </article>
   );
 };

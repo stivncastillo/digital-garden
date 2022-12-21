@@ -1,6 +1,6 @@
 ---
+import Post from '@components/Blog/Post';
 import type { MarkdownInstance } from 'astro';
-import PostCard from '../components/Home/components/PostCard';
 import Layout from '../layouts/Layout.astro';
 import type { FrontMatter } from '../types';
 
@@ -9,6 +9,8 @@ const posts = (await Astro.glob<MarkdownInstance<FrontMatter>>('./blog/**/*.{md,
 );
 ---
 
-<Layout title="Stiven Castillo" description="Stiven Castillo es un Javascript Engineer enfócado al desarrollo Frontend.">
-  {posts.map((post) => <PostCard data={post} />)}
+<Layout title="Blog" description="Stiven Castillo es un Javascript Engineer enfócado al desarrollo Frontend.">
+  <div class="flex flex-col flex-1 h-full">
+    {posts.map((post) => <Post data={post} />)}
+  </div>
 </Layout>

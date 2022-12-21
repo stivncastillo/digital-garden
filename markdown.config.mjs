@@ -3,6 +3,9 @@ import rehypeToc from "rehype-toc";
 import { remarkReadingTime } from './plugins/remark-reading-time.mjs';
 
 export default {
+  shikiConfig: {
+    theme: 'dracula',
+  },
   remarkPlugins: [[remarkToc, { tight: true, ordered: true }], remarkReadingTime],
   rehypePlugins: [
     [
