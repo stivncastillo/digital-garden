@@ -1,0 +1,65 @@
+---
+import type { MarkdownInstance } from "astro";
+import Layout from "../layouts/Layout.astro";
+import type { NotesFrontMatter } from "../types";
+
+const allNotes = await Astro.glob<MarkdownInstance<NotesFrontMatter>>(
+  "./digital-garden/*.{md,mdx}"
+);
+const uniqueTags = [
+  ...new Set(allNotes.map((note) => note.frontmatter.tags).flat()),
+];
+---
+
+<Layout
+  title="Digital Garden"
+  description="My personal digital garden with lots of personal notes, ideas, small snippets and tricks."
+>
+  <div class="flex flex-col flex-1 h-full">
+    <h1>Digital Garden</h1>
+    <p>
+      This is a personal wiki of interesting things (notes) that I've collected
+      while working, reading and live.
+    </p>
+
+    <section class="mt-6 mb-4">
+      <p class="text-xs">Filter by Categories:</p>
+
+      <ul class="flex flex-wrap flex-row gap-2">
+        {
+          uniqueTags.map((tag) => (
+            <li class="relative group">
+              <a href={`digital-garden/tags/${tag}`}>
+                <div class="p-px bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md transition-all duration-150 group-hover:-translate-x-1.5 group-hover:-translate-y-1.5 z-10">
+                  <div class="flex flex-col rounded-md py-2 px-3 items-center dark:bg-slate-900 bg-white">
+                    <span class="text-sm">{tag}</span>
+                  </div>
+                </div>
+                <div class="absolute top-0 bottom-0 right-0 left-0 group-hover:border-slate-900 dark:group-hover:border-white border border-dashed rounded-md -z-10" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="my-4">
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
+        {
+          allNotes.map(({ url, frontmatter: { title, description } }) => (
+            <li class="group">
+              <a
+                href={url}
+                class="flex flex-col py-3 px-5 rounded-md bg-slate-100 dark:bg-gray-800 dark:group-hover:bg-gray-800/60 transition duration-150"
+              >
+                <span class="group-hover:underline text-lg">{title}</span>
+                <span class=" text-xs text-slate-500">{description}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+  </div>
+</Layout>

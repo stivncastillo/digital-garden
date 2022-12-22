@@ -5,6 +5,7 @@ publishedAt: '2022-05-12'
 description: 'Tips generales de la librería'
 category: 'Code'
 author: 'Stiven Castillo'
+tags: ["web-development", "react"]
 ---
 
 ## Key attribute

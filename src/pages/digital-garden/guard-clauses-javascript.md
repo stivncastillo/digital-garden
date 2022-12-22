@@ -5,6 +5,7 @@ publishedAt: "2022-09-27"
 description: "The Guard clauses are a great alternative to if...else statements."
 category: "Code"
 author: "Stiven Castillo"
+tags: ["web-development", "javascript"]
 ---
 
 Check one by one the conditions of the function before the function finish the execution, this way we avoid that the indentation makes difficult the reading of the code. Without this we would have to read the whole function line by line to understand its operation.

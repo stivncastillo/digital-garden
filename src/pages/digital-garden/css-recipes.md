@@ -5,6 +5,7 @@ publishedAt: '2022-10-03'
 description: 'Useful CSS techniques, tricks and snippets'
 category: 'Code'
 author: 'Stiven Castillo'
+tags: ["web-development", "css"]
 ---
 
 ## Container Query

@@ -5,6 +5,7 @@ publishedAt: '2021-02-28'
 description: 'Custom hooks and tricks about it.'
 category: 'Code'
 author: 'Stiven Castillo'
+tags: ["web-development", "react"]
 ---
 
 ## useTimeout

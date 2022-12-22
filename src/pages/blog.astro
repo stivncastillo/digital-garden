@@ -9,7 +9,7 @@ const posts = (await Astro.glob<MarkdownInstance<FrontMatter>>('./blog/**/*.{md,
 );
 ---
 
-<Layout title="Blog" description="Stiven Castillo es un Javascript Engineer enfócado al desarrollo Frontend.">
+<Layout title="Blog" description="My personal blog where I share what I have grown in my digital garden.">
   <div class="flex flex-col flex-1 h-full">
     {posts.map((post) => <Post data={post} />)}
   </div>

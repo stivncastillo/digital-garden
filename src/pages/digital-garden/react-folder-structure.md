@@ -5,6 +5,7 @@ publishedAt: '2022-04-13'
 description: 'Looking for the right way to order my application in react '
 category: 'Code'
 author: 'Stiven Castillo'
+tags: ["web-development", "react"]
 ---
 
 As described in the react page: ["React doesn’t have opinions"](https://reactjs.org/docs/faq-structure.html#is-there-a-recommended-way-to-structure-react-projects).

@@ -3,8 +3,8 @@ layout: '@layouts/BlogPostLayout.astro'
 title: 'Typescript'
 publishedAt: '2022-05-07'
 description: 'Typescript tips and tricks'
-category: 'Code'
 author: 'Stiven Castillo'
+tags: ["web-development", "typescript"]
 ---
 
 ## Choose some properties with Pick

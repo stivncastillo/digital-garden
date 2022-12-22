@@ -19,6 +19,8 @@ export interface NotesFrontMatter {
   author: string;
   publishedAt: string;
   minutesRead: string;
+  lang?: string;
+  tags?: string[];
 }
 
 export interface Talk {

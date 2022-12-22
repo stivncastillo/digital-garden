@@ -1,0 +1,32 @@
+---
+import type { MarkdownInstance } from "astro";
+import Layout from '../../../layouts/Layout.astro';
+import type { NotesFrontMatter } from "../../../types";
+
+export async function getStaticPaths() {
+  const allNotes = await Astro.glob<MarkdownInstance<NotesFrontMatter>>('../../digital-garden/*.{md,mdx}');
+
+  const uniqueTags = [...new Set(allNotes.map((notes) => notes.frontmatter.tags).flat())];
+
+  return uniqueTags.map((tag) => {
+    const filteredNotes = allNotes.filter((notes) => notes.frontmatter.tags && notes.frontmatter.tags.includes(tag ?? ''));
+    return {
+      params: { tag },
+      props: { notes: filteredNotes },
+    };
+  });
+}
+
+interface Props {
+  notes: Array<MarkdownInstance<NotesFrontMatter>>
+}
+
+const { tag } = Astro.params;
+const { notes } = Astro.props;
+---
+<Layout title={tag as string} description={tag as string}>
+  <p>Notes tagged with {tag}</p>
+  <ul>
+    {notes.map((post) => (<li>{post.frontmatter.title}</li>))}
+  </ul>
+</Layout>

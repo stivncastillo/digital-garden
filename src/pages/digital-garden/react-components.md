@@ -5,6 +5,7 @@ publishedAt: '2022-05-02'
 description: "Structures or components that I've created and seem interesting to me"
 category: 'Code'
 author: 'Stiven Castillo'
+tags: ["web-development", "react"]
 ---
 
 
