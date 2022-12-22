@@ -1,0 +1,20 @@
+---
+import type { NotesFrontMatter } from 'src/types';
+
+interface Props {
+  url?: string;
+  title: string;
+  description: string;
+}
+const { url, title, description } = Astro.props
+---
+
+<li class="group">
+  <a
+    href={url}
+    class="flex flex-col py-3 px-5 rounded-md bg-slate-100 dark:bg-gray-800 dark:group-hover:bg-gray-800/60 transition duration-150"
+  >
+    <span class="group-hover:underline text-lg">{title}</span>
+    <span class=" text-xs text-slate-500">{description}</span>
+  </a>
+</li>
