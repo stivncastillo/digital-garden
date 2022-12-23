@@ -28,6 +28,6 @@ export default defineConfig({
     ...markdownConfig,
     extendPlugins: false
   }), sitemap()],
-  output: "server",
-  adapter: vercel()
+  // output: "server",
+  // adapter: vercel()
 });

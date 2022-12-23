@@ -4,6 +4,10 @@ import type { MarkdownInstance } from "astro";
 import Layout from '../../../layouts/Layout.astro';
 import type { NotesFrontMatter } from "../../../types";
 
+const allNotesPrint = await Astro.glob<MarkdownInstance<NotesFrontMatter>>('../../digital-garden/*.{md,mdx}');
+  const uniqueTagsPrint = [...new Set(allNotesPrint.map((notes) => notes.frontmatter.tags).flat())];
+
+
 export async function getStaticPaths() {
   const allNotes = await Astro.glob<MarkdownInstance<NotesFrontMatter>>('../../digital-garden/*.{md,mdx}');
 
@@ -38,6 +42,9 @@ const { notes } = Astro.props;
           ))
         }
       </ul>
+
+      {allNotesPrint.length}
+      {uniqueTagsPrint.join(', ')}
     </section>
 
 
