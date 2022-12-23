@@ -27,7 +27,7 @@ const PostCard = ({ pinned, slim, data }: Props) => {
       >
         <div className="flex flex-row space-x-4 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-50 rounded-md p-4 h-full">
           <div className="flex flex-col justify-between">
-            <h3 className="text-lg mb-1 mt-0 font-normal dark:text-slate-100  group-hover:underline">
+            <h3 className="text-lg mb-8 md:mb-1 mt-0 font-normal dark:text-slate-100  group-hover:underline">
               {title}
             </h3>
 

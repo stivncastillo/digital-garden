@@ -17,7 +17,7 @@ const listPost = posts.filter(post => !post.frontmatter.pinned).slice(0, 2)
   title="Latest Posts"
   className="flex flex-col flex-1"
 >
-  <div class="flex flex-row gap-6">
+  <div class="flex flex-col md:flex-row gap-6">
     {pinnedPost && <PostCard data={pinnedPost} pinned slim />}
     {listPost.map((post) => <PostCard data={post} slim />)}
   </div>
