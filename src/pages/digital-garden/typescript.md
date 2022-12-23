@@ -9,6 +9,8 @@ tags: ["web-development", "typescript"]
 
 ## Choose some properties with Pick
 
+> Text that is a quote
+
 Typescript is very powerful in terms of type checking, but sometimes it gets tedious when some types are subsets of other types and you need to define type checking for them.
 
 Let's take an example, we have 2 types of response:

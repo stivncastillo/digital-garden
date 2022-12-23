@@ -43,11 +43,9 @@ const date = publishedAt
     <div class="flex flex-col m-auto h-screen">
       <Navbar />
 
-      <main
-        class="flex flex-col mx-auto max-w-4xl pt-12 px-4 md:px-8 mb-8 flex-grow w-full"
-      >
-        <article>
-          <header class="mb-4">
+      <main class="flex flex-col flex-1 mx-auto max-w-4xl pt-12 px-4 md:px-0 mb-4 flex-grow w-full">
+        <article class="mb-8">
+          <header class="mb-8">
             <h1 class="mb-2">{title}</h1>
             <p
               class="mb-8 text-xl text-slate-500 dark:text-slate-400 leading-relaxed"
@@ -63,10 +61,11 @@ const date = publishedAt
                 <span class="text-slate-400 text-sm">{date}</span>
               </div>
             </div>
-            <hr class="border-slate-200 dark:border-slate-700 my-2" />
+
+            <div class="h-1 my-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
           </header>
 
-          <div id="blog-layout">
+          <div class="prose lg:prose-lg dark:prose-invert max-w-none prose-slate">
             <slot />
           </div>
         </article>
