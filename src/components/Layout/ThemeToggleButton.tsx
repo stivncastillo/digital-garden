@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import { IoIosMoon, IoIosSunny } from "react-icons/io/index";
 
 export default function ThemeToggleButton() {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "light");
+  const [theme, setTheme] = useState("light");
 
   const handleClick = () => setTheme(theme === "light" ? "dark" : "light");
+
+  useEffect(() => {
+    setTheme(localStorage.getItem("theme") ?? "light");
+  }, []);
 
   useEffect(() => {
     if (theme === "dark") {

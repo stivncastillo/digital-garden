@@ -2,6 +2,7 @@
 import type { NotesFrontMatter } from "../../types";
 import type { MarkdownInstance } from "astro";
 import HomeSection from "./components/HomeSection.astro";
+import Note from "@components/Notes/Note.astro";
 
 interface Props {
   notes: MarkdownInstance<NotesFrontMatter>[];
@@ -18,15 +19,9 @@ const listNotes = notes.slice(0, 9);
   <ul class="grid grid-cols-1 md:grid-cols-3 gap-2">
     {
       listNotes.map(({ url, frontmatter: { title } }) => (
-        <li class="group">
-          <a
-            href={url}
-            class="flex flex-col py-3 px-5 rounded-md bg-slate-100 dark:bg-gray-800 dark:group-hover:bg-gray-800/60 transition duration-150"
-          >
-            <span class="group-hover:underline">{title}</span>
-          </a>
-        </li>
-      ))
-    }
+        <Note url={url} title={title} slim />
+        ))
+      }
+      <Note url="/digital-garden" title="See more..." slim />
   </ul>
 </HomeSection>
