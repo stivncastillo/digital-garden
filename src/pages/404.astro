@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const { pathname } = Astro.url;
+---
+
+<Layout title="Error 404" description="Stiven Castillo is Javascript Engineer focused in Frontend development and UI design.">
+
+  <div class="flex flex-col flex-1 w-4/5 m-auto">
+    <h1 class="mb-8">404: Page not found 🙁</h1>
+    <p>There is no post/page/note at the slug <span class=" font-bold">{pathname}</span></p>
+    <a class="link" href="/">Go Home</a>
+  </div>
+</Layout>
