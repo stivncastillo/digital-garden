@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import markdownConfig from './markdown.config.mjs';
+import markdownConfig from "./markdown.config.mjs";
 
 // https://astro.build/config
 import tailwind from "@astrojs/tailwind";
@@ -17,17 +17,30 @@ import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
+import partytown from "@astrojs/partytown";
+
+// https://astro.build/config
 export default defineConfig({
-  site: 'https://stiven.dev',
+  site: "https://stiven.dev",
   markdown: markdownConfig,
-  integrations: [tailwind({
-    config: {
-      applyBaseStyles: false
-    }
-  }), react(), mdx({
-    ...markdownConfig,
-    extendPlugins: false
-  }), sitemap()],
+  integrations: [
+    tailwind({
+      config: {
+        applyBaseStyles: false,
+      },
+    }),
+    react(),
+    mdx({
+      ...markdownConfig,
+      extendPlugins: false,
+    }),
+    sitemap(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+  ],
   // output: "server",
   // adapter: vercel()
 });

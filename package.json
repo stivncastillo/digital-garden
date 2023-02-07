@@ -35,6 +35,7 @@
     "unified": "^10.1.2"
   },
   "devDependencies": {
+    "@astrojs/partytown": "^1.0.3",
     "@tailwindcss/typography": "^0.5.8",
     "node-html-parser": "^6.1.4"
   }
