@@ -1,4 +1,3 @@
-
 ---
 layout: '@layouts/BlogPostLayout.astro'
 title: 'Why use a design system?'
@@ -8,6 +7,7 @@ category: 'Design'
 author: 'Stiven Castillo'
 tags: ["design", "ui", "ux"]
 ---
+
 
 ## Design work can be created and replicated quickly
 The main benefit of design systems is their ability to replicate designs by using premade UI components and elements. With this approach the team can use the same elements over and over, They reducing the need to reinvent each component.
