@@ -8,6 +8,13 @@ author: 'Stiven Castillo'
 tags: ["design", "ui", "ux"]
 ---
 
+## What is a UI Design system?
+
+A UI design system is a set of standards for design and code along with components that unify both these practices helping them complement one another and producing the exact result which is conceptualised. Think of it as an Instruction manual. It’s also like an inventory which can be used to pick up resources and use them in your design.
+
+## Why do we need a UI System?
+
+To design consistent UI across every part of your design can be daunting. A UI system helps your users navigate intuitively and makes it uniform across your product, making them familiar with your design language. They help teams by giving them a more structured and guided way to build UI for their products. So now that you guys are familiar with what is a UI system and why do we need one, let’s create one!
 
 ## Design work can be created and replicated quickly
 The main benefit of design systems is their ability to replicate designs by using premade UI components and elements. With this approach the team can use the same elements over and over, They reducing the need to reinvent each component.
