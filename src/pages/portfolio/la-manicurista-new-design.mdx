@@ -1,5 +1,5 @@
 ---
-layout: '@layouts/PortfolioLayout.astro'
+layout: '@layouts/BlogPostLayout.astro'
 title: 'New look and field for La Manicurista App'
 publishedAt: '2023-04-21'
 description: 'Design for the new version of the app'
@@ -8,8 +8,6 @@ heroImage: '/assets/images/portfolio/lm-1.png'
 tags: ["UI"]
 year: 2019
 ---
-import ModalImage from "react-modal-image";
-
 
 ## Description
 
@@ -17,7 +15,9 @@ La Manicurista (now Tualy) is an application for beauty and personal care servic
 
 ## Problems with old version
 
-<ModalImage client:load small="/assets/images/portfolio/lm-2.png" large="/assets/images/portfolio/lm-2.png" alt="Old Version" />
+<a href="/assets/images/portfolio/lm-2.png" target="_blank">
+  <img src="/assets/images/portfolio/lm-2.png" />
+</a>
 
 - The design is based on poor implementation of Material by google
 - There is not a design system or design files to test the application as a prototype

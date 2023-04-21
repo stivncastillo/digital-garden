@@ -21,7 +21,7 @@ const PortfolioItem = ({ data }: Props) => {
       >
         <div
           style={{ backgroundImage: `url('${heroImage}'` }}
-          className={`flex flex-col justify-end bg-[url('${heroImage}')] bg-cover bg-center text-slate-800 dark:text-slate-50 rounded-md h-full`}
+          className={`flex flex-col justify-end bg-cover bg-center text-slate-800 dark:text-slate-50 rounded-md h-full`}
         >
           <div className="flex flex-col justify-between bg-white dark:bg-slate-900 rounded-md p-4">
             <h3 className="text-lg mb-8 md:mb-1 mt-0 font-normal dark:text-slate-100  group-hover:underline">

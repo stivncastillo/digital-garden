@@ -5,7 +5,7 @@ interface FrontMatterBase {
   description: string;
   author: string;
   publishedAt: string;
-  minutesRead: string;
+  minutesRead?: string;
   lang?: string;
   tags?: string[];
 }

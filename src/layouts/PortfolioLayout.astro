@@ -5,10 +5,9 @@ import Navbar from "../components/Layout/Navbar.astro";
 import { format } from "date-fns";
 
 import type { MarkdownLayoutProps } from "astro";
-import type { FrontMatter, PortfolioFrontMatter } from "../types";
+import type { PortfolioFrontMatter } from "../types";
 import SocialList from "@components/Home/SocialList";
 import ThemeScript from "@components/Layout/ThemeScript.astro";
-import ModalImage from "react-modal-image";
 
 type Props = MarkdownLayoutProps<PortfolioFrontMatter>;
 
@@ -71,7 +70,9 @@ const date = publishedAt
           {
             heroImage ? (
               <div class="w-full">
-                <ModalImage client:load small={heroImage} large={heroImage} alt={title} />
+                <a href={heroImage} target="_blank">
+                  <img src={heroImage} />
+                </a>
               </div>
             ) : null
           }
