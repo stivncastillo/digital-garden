@@ -1,0 +1,34 @@
+---
+import type { MarkdownInstance } from "astro";
+import Layout from "../layouts/Layout.astro";
+import type { PortfolioFrontMatter } from "src/types";
+import PortfolioItem from "@components/Portfolio/PortfolioItem";
+
+const items = (
+  await Astro.glob<MarkdownInstance<PortfolioFrontMatter>>(
+    "./portfolio/**/*.{md,mdx}"
+  )
+).sort(
+  (a, b) =>
+    new Date(b.frontmatter.publishedAt).valueOf() -
+    new Date(a.frontmatter.publishedAt).valueOf()
+);
+---
+
+<Layout
+  title="Portfolio"
+  description="A little list of some projects that I worked in."
+>
+  <section>
+    <header class="mb-8">
+      <h1>My Portfolio</h1>
+      <p>
+        here I share with you some of my experience in different projects.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {items.map((item) => <PortfolioItem data={item} client:load />)}
+    </div>
+  </section>
+</Layout>

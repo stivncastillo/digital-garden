@@ -1,26 +1,26 @@
 // For blog post
-export interface FrontMatter {
+
+interface FrontMatterBase {
   title: string;
   description: string;
   author: string;
   publishedAt: string;
   minutesRead: string;
-  updatedAt?: string;
-  heroImage?: string;
-  pinned?: boolean;
   lang?: string;
   tags?: string[];
 }
+export interface FrontMatter extends FrontMatterBase {
+  updatedAt?: string;
+  heroImage?: string;
+  pinned?: boolean;
+  category?: string;
+}
 
-// For notes
-export interface NotesFrontMatter {
-  title: string;
-  description: string;
-  author: string;
-  publishedAt: string;
-  minutesRead: string;
-  lang?: string;
-  tags?: string[];
+export interface NotesFrontMatter extends FrontMatterBase {}
+
+export interface PortfolioFrontMatter extends FrontMatterBase {
+  heroImage?: string;
+  year?: number;
 }
 
 export interface Talk {
