@@ -1,16 +1,25 @@
 ---
 import Post from '@components/Blog/Post';
-import type { MarkdownInstance } from 'astro';
-import Layout from '../layouts/Layout.astro';
-import type { FrontMatter } from '../types';
+import PageLayout from '@layouts/PageLayout.astro';
+import { CollectionEntry, getCollection } from 'astro:content';
 
-const posts = (await Astro.glob<MarkdownInstance<FrontMatter>>('./blog/**/*.{md,mdx}')).sort(
-  (a, b) => new Date(b.frontmatter.publishedAt).valueOf() - new Date(a.frontmatter.publishedAt).valueOf()
-);
+const posts = await getCollection('blog', (post => post.data.published));
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Blog", url: "/blog" },
+]
 ---
 
-<Layout title="Blog" description="My personal blog where I share what I have grown in my digital garden.">
-  <div class="flex flex-col flex-1 h-full">
-    {posts.map((post) => <Post data={post} />)}
-  </div>
-</Layout>
+<PageLayout
+  title="Blog"
+  description="I write about design and web development with React as well as becoming a better developer. Discover whatever you are interested in!"
+  breadcrumbs={breadcrumbs}
+  image="/assets/images/about/blog.svg">
+  <section class="flex flex-col flex-1 h-full">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4 mb-16">
+      {posts.map((post: CollectionEntry<'blog'>, index: number) => <Post data={post} pinned={index === 0} size={index === 0 ? 'large' : 'medium'} />)}
+    </div>
+
+  </section>
+</PageLayout>

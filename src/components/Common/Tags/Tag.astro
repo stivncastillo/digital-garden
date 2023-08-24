@@ -1,26 +1,25 @@
 ---
+import Icon from "../Icon/Icon.astro";
 interface Props {
   url: string;
   name: string;
+  icon: string;
+  isSelected?: boolean;
 }
 
-const { url, name } = Astro.props;
+const { url, name, icon, isSelected } = Astro.props;
 ---
 
-<li class="relative group">
+<li class="group">
   <a href={url}>
-    <div
-      class="p-px bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md transition-all duration-150 group-hover:-translate-x-1.5 group-hover:-translate-y-1.5 z-10"
-    >
-      <div
-        class="flex flex-col rounded-md py-2 px-3 items-center dark:bg-slate-900 bg-white"
-      >
-        <span class="text-sm">{name}</span>
-      </div>
-    </div>
-    <div
-      class="absolute top-0 bottom-0 right-0 left-0 group-hover:border-slate-900 dark:group-hover:border-white border border-dashed rounded-md -z-10"
-    >
+    <div class="bg-white dark:bg-gray-950 flex flex-row items-center mr-3 py-3 px-2 gap-2 rounded-md transition-all duration-100 outline outline-black dark:outline-white outline-1 hover:outline-2 m-0.5" class:list={[{'outline-2' : isSelected}]}>
+      <Icon
+        icon={icon}
+        height="32px"
+        width="32px"
+        class="fill-black-text dark:fill-white"
+      />
+      <span class="text-sm group-hover:underline" class:list={[{'underline' : isSelected}]}>{name}</span>
     </div>
   </a>
 </li>

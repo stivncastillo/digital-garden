@@ -1,0 +1,41 @@
+---
+import NotesSection from "@components/DigitalGarden/NotesSection.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+import { groupNotes, type GroupNoteType } from "src/helpers/arrayHelper";
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  const uniqueCategories: Array<string> = [...new Set(notes.map((note) => note.data.category).flat())];
+
+  return uniqueCategories.map((category) => {
+    const filteredNotes = notes.filter((note) => note.data.category && note.data.category.includes(category ?? ''));
+    const groupedNotes = groupNotes(filteredNotes);
+
+    return {
+      params: { category: category.toLowerCase() },
+      props: { groupedNotes, uniqueCategories },
+    };
+  });
+}
+
+interface Props {
+  uniqueCategories: Array<string>;
+  groupedNotes: Array<GroupNoteType>;
+}
+
+const { category } = Astro.params;
+const { groupedNotes, uniqueCategories } = Astro.props;
+---
+
+<PageLayout
+  title="Digital Garden"
+  description="This is a personal wiki of interesting things (notes) that I've collected while working, reading and live."
+  breadcrumbs={[
+    { name: "Home", url: "/" },
+    { name: "Digital Garden", url: "/digital-garden" },
+    { name: category ?? 'now', url: "/" },
+  ]}
+>
+  <NotesSection category={category} uniqueCategories={uniqueCategories} groupedNotes={groupedNotes} />
+</PageLayou>

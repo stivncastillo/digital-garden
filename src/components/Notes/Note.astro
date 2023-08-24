@@ -1,19 +1,17 @@
 ---
+import Icon from '@components/Common/Icon/Icon.astro';
 interface Props {
   url?: string;
   title: string;
+  icon: string;
   description?: string;
-  slim?: boolean;
 }
-const { url, title, description, slim = false } = Astro.props;
+const { url, title, icon } = Astro.props;
 ---
 
-<li class="group">
-  <a
-    href={url}
-    class="flex flex-col py-3 px-5 transition duration-150 rounded-md bg-slate-100 dark:bg-gray-800 dark:group-hover:bg-gray-800/60"
-  >
-    <span class="group-hover:underline text-lg">{title}</span>
-    {!slim && <span class=" text-xs text-slate-500">{description}</span>}
+<li class="relative group">
+  <a href={url} class="flex justify-center items-center flex-col pt-8 pb-4 h-[160px] md:h-[204px] bg-white dark:bg-gray-950 gap-6 outline outline-1 outline-black dark:outline-transparent dark:hover:outline-white rounded-md hover:outline-2 hover:shadow-solid-lg dark:hover:shadow-solid-lg dark:hover:shadow-white transition-all duration-200">
+    <Icon icon={icon} class=" fill-black-text dark:fill-white" />
+    <span class="group-hover:underline">{title}</span>
   </a>
 </li>

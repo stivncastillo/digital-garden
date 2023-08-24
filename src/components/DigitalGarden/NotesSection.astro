@@ -1,0 +1,23 @@
+---
+// TODO: change component name
+import type { GroupNoteType } from "src/helpers/arrayHelper";
+import SidebarNav from "./SidebarNav.astro";
+import GroupNotes from "./GroupNotes.astro";
+
+interface Props {
+  uniqueCategories: Array<string>;
+  groupedNotes: Array<GroupNoteType>;
+  category?: string;
+}
+const { uniqueCategories, groupedNotes, category } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-[224px_1fr] gap-y-8 md:gap-y-0 md:gap-x-4 h-full mb-16">
+  <SidebarNav categories={uniqueCategories} selectedCategory={category} />
+
+  <section class="">
+    <h2 class=" capitalize">{category ?? 'All Notes'}</h2>
+
+    {groupedNotes.map((group) => <GroupNotes group={group} />)}
+  </section>
+</div>

@@ -1,27 +1,27 @@
 ---
+import Icon from "@components/Common/Icon/Icon.astro";
 import HomeSection from "./components/HomeSection.astro";
-import type { TalksJson } from "src/pages/index.astro";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  talks: TalksJson;
+  talks: CollectionEntry<"talks">[];
 }
 
 const { talks } = Astro.props;
-const videos = talks.filter(talk => talk.videoId !== "").splice(0, 2);
-const videosTitle = videos.map(video => video.title)
-const restTalks = talks.filter(talk => !videosTitle.includes(talk.title) );
+const videos = talks.filter((talk: any) => talk.videoId !== "").splice(0, 2);
+const videosTitle = videos.map((talk: any) => talk.data.title)
+const restTalks = talks.filter((talk: any) => !videosTitle.includes(talk.data.title) );
 ---
 
 <HomeSection title="Latest Talks" className="flex flex-col flex-1">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center">
-    {videos.map(video => (
+    {videos.map(({data: {title, videoId}}) => (
       <iframe
-        class="object-contain aspect-video"
-        src={`https://www.youtube.com/embed/${video.videoId}`}
-        title="video123"
-        name="video123"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope;
-    picture-in-picture"
+        class="object-contain aspect-video rounded-md hover:shadow-solid-lg hover:shadow-lavender-rose-400 transition-all duration-200"
+        src={`https://www.youtube.com/embed/${videoId}`}
+        title={title}
+        name={title}
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         aria-hidden="true"
         allowfullscreen=""
         width="100%"
@@ -31,13 +31,13 @@ const restTalks = talks.filter(talk => !videosTitle.includes(talk.title) );
   </div>
 
   <div class="mt-8">
-    <p class=" font-normal">I have done some other talks. The best ones are:</p>
-    <ul class="list-disc list-inside">
-
-      {restTalks.map(talk => (
-        <li>{talk.title} - <a class="link" href={talk.link} target="_blank">{talk.videoId ?'video link' : 'slides link'}</a></li>
+    <p class="text-black font-normal">I have done some other talks. The best ones are:</p>
+    <ul class="flex flex-col gap-2 list-none list-inside">
+      {restTalks.map(({data: {title, link, videoId}}) => (
+        <li class="flex flex-row gap-2 group">
+          <Icon icon="arrow-right" class=" transition-all duration-75 group-hover:translate-x-0.5 fill-black-text dark:fill-lavender-rose-300" />
+          {title} - <a class=" text-blue-marguerite-600 dark:text-lavender-rose-400 font-bold group-hover:underline" href={link} target="_blank">Link</a></li>
       ))}
-
     </ul>
   </div>
 </HomeSection>

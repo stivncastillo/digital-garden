@@ -1,27 +1,31 @@
 ---
-import type { NotesFrontMatter } from "../../types";
-import type { MarkdownInstance } from "astro";
 import HomeSection from "./components/HomeSection.astro";
-import Note from "@components/Notes/Note.astro";
+import Note from "../Notes/Note.astro";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  notes: MarkdownInstance<NotesFrontMatter>[];
+  notes:CollectionEntry<"notes">[];
 }
-
-const { notes } = Astro.props;
-const listNotes = notes.slice(0, 9);
 ---
 
 <HomeSection
   title="Digital Garden"
-  className="flex flex-col flex-1 space-y-1"
+  className="flex flex-col flex-1"
+  description="My digital garden is a collection of notes, thoughts and resources that I collect throughout my learning process."
 >
-  <ul class="grid grid-cols-1 md:grid-cols-3 gap-2">
-    {
-      listNotes.map(({ url, frontmatter: { title } }) => (
-        <Note url={url} title={title} slim />
-        ))
-      }
-      <Note url="/digital-garden" title="See more..." slim />
+  <ul class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-5 auto-rows-fr auto-cols-fr mb-12">
+    <Note url="/digital-garden/programming" title="Programming" icon="code" />
+    <Note url="/digital-garden/design" title="Design" icon="pencil" />
+    <Note url="/digital-garden/books" title="Books" icon="book" />
+    <Note url="/digital-garden/life" title="Life" icon="hearth" />
   </ul>
+
+  <div class=" flex flex-col space-y-4 md:space-y-0 md:flex-row items-center justify-between bg-blue-marguerite-200 px-4 py-6 border border-black dark:border-blue-marguerite-400 rounded-md -z-0">
+    <p class="m-0 text-black dark:text-black">Want to know more about digital gardens?</p>
+    <a href="/digital-garden"
+      class=" bg-blue-marguerite-600 block rounded-md px-4 py-2 border border-black text-white transition-all duration-75 shadow-black-md "
+    >
+    Read More
+    </a>
+  </div>
 </HomeSection>

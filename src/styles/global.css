@@ -4,32 +4,32 @@
 
 @layer base {
   body {
-    font-family: 'Open Sans', 'Merriweather Sans', sans-serif;
+    font-family: "Open Sans", "Merriweather Sans", sans-serif;
     font-size: 16px;
   }
   h1 {
     @apply font-bold text-5xl mb-2 leading-tight;
-    font-family: 'Merriweather Sans', 'Open Sans', sans-serif;
+    font-family: "Merriweather Sans", "Open Sans", sans-serif;
   }
   h2 {
     @apply font-medium leading-tight mb-2 text-3xl;
-    font-family: 'Merriweather Sans', 'Open Sans', sans-serif;
+    font-family: "Merriweather Sans", "Open Sans", sans-serif;
   }
   h3 {
-    @apply font-medium leading-tight mt-4 mb-4 text-2xl;
-    font-family: 'Merriweather Sans', 'Open Sans', sans-serif;
+    @apply font-normal leading-tight mt-4 mb-4 text-2xl;
+    font-family: "Merriweather Sans", "Open Sans", sans-serif;
   }
   h4 {
     @apply font-medium leading-tight mt-4 mb-4 text-xl;
-    font-family: 'Merriweather Sans', 'Open Sans', sans-serif;
+    font-family: "Merriweather Sans", "Open Sans", sans-serif;
   }
   h5 {
     @apply font-medium leading-tight mb-2 text-lg;
-    font-family: 'Merriweather Sans', 'Open Sans', sans-serif;
+    font-family: "Merriweather Sans", "Open Sans", sans-serif;
   }
   h6 {
     @apply font-medium leading-tight mb-2 text-base;
-    font-family: 'Merriweather Sans', 'Open Sans', sans-serif;
+    font-family: "Merriweather Sans", "Open Sans", sans-serif;
   }
   p {
     @apply mb-3 leading-relaxed text-slate-500 dark:text-slate-300 font-normal;
@@ -52,13 +52,11 @@
   tbody tr td {
     @apply py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400;
   }
-
-  .posts-content {}
-
 }
 
 @layer components {
-  .link {
-    @apply underline text-indigo-500 ;
+  .caption {
+    @apply font-normal mb-4 text-lg;
+    font-family: "Open Sans", sans-serif;
   }
 }

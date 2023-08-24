@@ -2,7 +2,20 @@
 // @ts-ignore
 import { parse } from 'node-html-parser';
 
-export interface Props {
+interface SvgIconConstituentValues {
+    strokeColor?: string;
+    strokeWidth?: string;
+    strokeFill?: string;
+    fillColor?: string;
+    imageWidth?: string;
+    imageHeight?: string;
+    width?: string;
+    height?: string;
+    rotateCenter?: number;
+    className?: string;
+}
+
+export interface Props extends SvgIconConstituentValues {
   icon: string;
   fill?: string;
   class?: string;

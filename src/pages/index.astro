@@ -1,21 +1,21 @@
 ---
-import type { MarkdownInstance } from 'astro';
+import TalksSection from '@components/Home/TalksSection.astro';
 import Hero from '../components/Home/Hero.astro';
 import NotesSection from '../components/Home/NotesSection.astro';
 import PostsSection from '../components/Home/PostsSection.astro';
 import Layout from '../layouts/Layout.astro';
-import type { FrontMatter, NotesFrontMatter } from '../types';
-import talks from '../data/talks.json';
-import TalksSection from '@components/Home/TalksSection.astro';
-export type TalksJson = typeof talks;
+import { getCollection } from "astro:content";
 
-const posts = (await Astro.glob<MarkdownInstance<FrontMatter>>('./blog/**/*.{md,mdx}')).sort(
-  (a, b) => new Date(b.frontmatter.publishedAt).valueOf() - new Date(a.frontmatter.publishedAt).valueOf()
-);
+// const posts = (await Astro.glob<MarkdownInstance<FrontMatter>>('./blog/**/*.{md,mdx}')).sort(
+//   (a, b) => new Date(b.frontmatter.publishedAt).valueOf() - new Date(a.frontmatter.publishedAt).valueOf()
+// );
+const posts = await getCollection('blog');
+const notes = await getCollection('notes');
+const talks = await getCollection('talks');
 
-const notes = (await Astro.glob<MarkdownInstance<NotesFrontMatter>>('./digital-garden/**/*.{md,mdx}')).sort(
-  (a, b) => new Date(b.frontmatter.publishedAt).valueOf() - new Date(a.frontmatter.publishedAt).valueOf()
-);
+// const notes = (await Astro.glob<MarkdownInstance<NotesFrontMatter>>('./digital-garden/**/*.{md,mdx}')).sort(
+//   (a, b) => new Date(b.frontmatter.publishedAt).valueOf() - new Date(a.frontmatter.publishedAt).valueOf()
+// );
 ---
 
 <Layout title="Home" description="Stiven Castillo es un Javascript Engineer enfócado al desarrollo Frontend.">

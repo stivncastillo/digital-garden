@@ -1,7 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "ignoreDeprecations": "5.0",
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "baseUrl": ".",
@@ -10,5 +9,5 @@
       "@layouts/*": ["src/layouts/*"]
     }
   },
-  "exclude": ["node_modules", "src/**/*.mdx",]
+  "exclude": ["node_modules", "src/**/*.mdx"]
 }

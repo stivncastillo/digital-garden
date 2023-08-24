@@ -1,71 +1,62 @@
 import React from "react";
 import { format } from "date-fns";
-import type { FrontMatter } from "../../types";
-import type { MarkdownInstance } from "astro";
+import type { CollectionEntry } from "astro:content";
+import { getPostUrl } from "src/utils/urlHelpers";
 
 interface Props {
+  data: CollectionEntry<"blog">;
+  size?: "medium" | "large";
   pinned?: boolean;
-  slim?: boolean;
-  data: MarkdownInstance<FrontMatter>;
 }
 
-const Post = ({ slim, data }: Props) => {
+const Post = ({ data, size = "medium", pinned = false }: Props) => {
   const {
-    url,
-    frontmatter: { title, publishedAt, description, heroImage },
+    slug,
+    data: { title, publishedAt, description },
   } = data;
 
-  const formattedDate = publishedAt.replace(/-/g, "/");
-  const day = format(new Date(formattedDate), "dd");
-  const month = format(new Date(formattedDate), "MMM");
+  const date = format(new Date(publishedAt), "MMM dd, yyyy");
 
   return (
-    <article className="group mb-6">
-      <a href={url}>
-        <article className="flex flex-row space-x-4 items-start">
-          <div className="relative">
-            <div className="flex flex-col h-auto items-center p-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-md transition-all duration-150 group-hover:-translate-x-2 group-hover:-translate-y-2 z-10">
-              <div className="flex flex-col rounded-md py-2 px-3 items-center dark:bg-slate-900 bg-white">
-                <span className="font-thin font-merri leading-3 text-xs mb-1 dark:text-white uppercase">
-                  {month}
-                </span>
-                <span className="font-bold font-merri leading-3 text-xl dark:text-white">
-                  {day}
-                </span>
-              </div>
-            </div>
-            <div className="absolute top-0 bottom-0 right-0 left-0 group-hover:border-slate-900 dark:group-hover:border-white border border-dashed rounded-md -z-10"></div>
-          </div>
+    <a
+      href={getPostUrl("posts", slug)}
+      className={size === "large" ? `col-span-1 md:col-span-2 md:mb-8` : ""}
+    >
+      <article
+        className={`bg-white dark:bg-gray-950 p-8 pb-4 rounded-md outline outline-1 outline-black dark:outline-transparent dark:hover:outline-white hover:outline-2 space-y-6 group transition-all duration-200 ${
+          pinned ? " hover:shadow-solid-lg shadow-black dark:shadow-white" : ""
+        }  ${
+          size === "medium"
+            ? "h-full flex flex-col justify-between py-4 pb-6"
+            : "pb-8"
+        }`}
+      >
+        <div>
+          {size === "medium" ? (
+            <h3 className="group-hover:underline">{title}</h3>
+          ) : (
+            <h2 className="group-hover:underline">{title}</h2>
+          )}
 
-          <div className="flex-1">
-            <h3 className="text-xl mb-2 mt-0 font-bold dark:text-slate-100">
-              {title}
-            </h3>
-            <p
-              className={`text-slate-500 font-normal dark:text-slate-400 ${
-                slim ? "text-sm" : "text-md"
-              }`}
-            >
-              {description}
-            </p>
-          </div>
-
-          <div
-            className={`hidden md:block group-hover:-rotate-3 duration-150 transition-all group-hover:scale-110 ${
-              slim ? "w-16" : "w-24"
-            }`}
+          <p
+            className={`${
+              size === "large" ? "caption" : ""
+            } text-gray-500 dark:text-gray-200`}
           >
-            <img
-              src={heroImage}
-              alt={title}
-              width={96}
-              height={96}
-              className="aspect-square object-cover rounded-md"
-            />
-          </div>
-        </article>
-      </a>
-    </article>
+            {description}
+          </p>
+        </div>
+
+        <div className="flex flex-row justify-between items-center">
+          <span className="text-lavender-rose-400 text-sm font-bold">
+            {date}
+          </span>
+          <span className=" text-white text-sm font-medium mr-2 px-4 py-1.5 rounded-full bg-blue-marguerite-600 border-black dark:border-white border">
+            Programming
+          </span>
+        </div>
+      </article>
+    </a>
   );
 };
 

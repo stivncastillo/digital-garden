@@ -1,30 +1,35 @@
 ---
 interface Props {
   title: string;
+  description?: string;
   showMoreHref?: string;
+  showMoreText?: string;
   className: string;
 }
 
-const { title, showMoreHref, className } = Astro.props;
+const { title, showMoreHref, className, showMoreText = 'show more', description } = Astro.props;
 ---
 
 <section class:list={["mb-20", className]}>
-  <div class="flex flex-row justify-between items-center mb-8">
-    <h2 class="text-4xl font-bold dark:text-slate-100">{title}</h2>
+  <div class="mb-8">
+    <div class="flex flex-row justify-between items-center mb-4">
+      <h2 class="text-4xl font-bold dark:text-white mb-0">{title}</h2>
+      {
+        showMoreHref && (
+          <div class="hidden md:block text-center">
+            <a
+              href={showMoreHref}
+              class="text-sm underline text-blue-marguerite-600 dark:text-blue-marguerite-400"
+            >
+             {showMoreText}
+            </a>
+            </div>
+        )
+      }
+    </div>
+    {description && <p class=" text-black dark:text-gray-200">{description}</p>}
   </div>
 
-  <slot />
 
-  {
-    showMoreHref && (
-      <div class="block text-center mt-5">
-        <a
-          href={showMoreHref}
-          class="text-sm underline text-indigo-400"
-        >
-          show more
-        </a>
-        </div>
-    )
-  }
+  <slot />
 </section>

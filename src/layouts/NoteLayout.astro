@@ -1,0 +1,77 @@
+---
+import BaseHead from "@components/Layout/BaseHead.astro";
+import Footer from "@components/Layout/Footer.astro";
+import Navbar from "@components/Layout/Navbar.astro";
+import { format } from "date-fns";
+
+import SocialList from "../components/Home/SocialList";
+import ThemeScript from "../components/Layout/ThemeScript.astro";
+import type { CollectionEntry } from "astro:content";
+import Breadcrumbs, { BreadcrumbItemType } from "@components/Layout/Breadcrumbs";
+
+interface Props {
+  entry: CollectionEntry<"notes">;
+  breadcrumbs?: Array<BreadcrumbItemType>;
+};
+
+const {
+  entry: {data: { title, description, publishedAt, lang, category }},
+  breadcrumbs
+} = Astro.props;
+
+const date = publishedAt
+  ? format(new Date(publishedAt), "MMMM dd, yyyy")
+  : "--";
+---
+
+<html lang={lang}>
+  <head>
+    <BaseHead
+      title={title}
+      description={description ?? 'no-description'}
+      contentType="article"
+    />
+  </head>
+
+  <body class="bg-floral-white dark:bg-black text-black-text dark:text-white">
+    <div class="flex flex-col m-auto h-screen">
+      <Navbar />
+
+      <main
+        class="flex flex-col flex-1 mx-auto max-w-4xl px-4 md:px-0 mt-2 mb-4 flex-grow w-full"
+      >
+        <article class="mb-8">
+          <header class="mb-8">
+            {
+              breadcrumbs?.length ? (
+                <Breadcrumbs items={breadcrumbs} client:load />
+              ) : null
+            }
+            <h1 class="mb-2 mt-12">{title}</h1>
+            <p
+              class="mb-8 text-xl text-gray-800 dark:text-gray-200 leading-relaxed"
+            >
+              {description}
+            </p>
+            <div class="flex flex-row justify-between items-end border-b border-black dark:border-white pb-2">
+              <span class="text-sm text-gray-500 dark:text-gray-200">Stiven Castillo</span>
+              <div class="flex flex-row items-center space-x-2">
+                <span class="text-gray-500 dark:text-gray-200 text-sm">{date}</span>
+              </div>
+            </div>
+          </header>
+
+          <div
+            class="prose lg:prose-lg dark:prose-invert max-w-none prose-slate"
+          >
+            <slot />
+          </div>
+        </article>
+      </main>
+
+      <SocialList />
+      <Footer />
+    </div>
+    <ThemeScript />
+  </body>
+</html>

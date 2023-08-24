@@ -1,24 +1,20 @@
 ---
-import type { FrontMatter } from "../../types";
-import type { MarkdownInstance } from "astro";
 import HomeSection from "./components/HomeSection.astro";
 import PostCard from "./components/PostCard";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  posts: MarkdownInstance<FrontMatter>[];
+  posts: CollectionEntry<"blog">[];
 }
 
 const { posts } = Astro.props;
-const pinnedPost = posts.find((post) => post.frontmatter.pinned);
-const listPost = posts.filter(post => !post.frontmatter.pinned).slice(0, 2)
 ---
 
 <HomeSection
   title="Latest Posts"
   className="flex flex-col flex-1"
 >
-  <div class="flex flex-col md:flex-row gap-6">
-    {pinnedPost && <PostCard data={pinnedPost} pinned slim />}
-    {listPost.map((post) => <PostCard data={post} slim />)}
+  <div class="flex flex-col md:flex-row gap-4 md:gap-6 -z-0">
+    {posts.map((post) => <PostCard data={post} />)}
   </div>
 </HomeSection>

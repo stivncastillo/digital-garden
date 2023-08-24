@@ -1,0 +1,61 @@
+---
+import SocialList from "@components/Home/SocialList";
+import ThemeScript from "@components/Layout/ThemeScript.astro";
+import BaseHead from "@components/Layout/BaseHead.astro";
+import Footer from "@components/Layout/Footer.astro";
+import Navbar from "@components/Layout/Navbar.astro";
+import Breadcrumbs, {
+  type BreadcrumbItemType,
+} from "@components/Layout/Breadcrumbs";
+
+export interface Props {
+  title: string;
+  description: string;
+  breadcrumbs?: Array<BreadcrumbItemType>;
+  image?: string;
+}
+
+const { title, description, breadcrumbs, image } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body
+    class="bg-floral-white dark:bg-black text-black-text dark:text-white"
+  >
+    <div class="flex flex-col m-auto h-screen">
+      <Navbar />
+      <main class="flex flex-col justify-between flex-1 mx-auto max-w-4xl mt-2 px-4 md:px-0 flex-grow w-full" >
+        <header class="mb-16 ">
+          {
+            breadcrumbs?.length ? (
+              <Breadcrumbs items={breadcrumbs} client:load />
+            ) : null
+          }
+
+          <div class="flex flex-row items-end justify-between mb-4">
+            <h1 class="mb-0 mt-4 md:mt-0">{title}</h1>
+
+            {image &&
+              <div class="w-36 h-36 hidden md:block">
+                <img class="w-full h-full" src={image} alt={title} />
+              </div>
+            }
+
+          </div>
+          <p class="text-gray-500 dark:text-gray-200">{description}</p>
+        </header>
+
+        <slot />
+      </main>
+
+      <SocialList />
+      <Footer />
+    </div>
+
+    <ThemeScript />
+  </body>
+</html>

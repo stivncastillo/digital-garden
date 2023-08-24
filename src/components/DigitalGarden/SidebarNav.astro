@@ -1,0 +1,29 @@
+---
+import Tag from "@components/Common/Tags/Tag.astro";
+import { ICON_BY_CATEGORY } from "../../helpers/constants";
+import type { IconByCategoryType } from "../../helpers/constants";
+
+interface Props {
+  categories: Array<string>;
+  selectedCategory?: string;
+}
+
+const { categories, selectedCategory } = Astro.props;
+---
+
+<nav aria-label="Note Categories">
+  <ul class="flex flex-row md:flex-col gap-2 md:gap-4 overflow-y-scroll md:overflow-hidden py-2 md:py-0 md:pb-3">
+    {
+      categories.map((category) => (
+        <Tag
+          url={`/digital-garden/${category.toLowerCase()}`}
+          icon={
+            ICON_BY_CATEGORY[category.toLowerCase() as keyof IconByCategoryType]
+          }
+          name={category ?? "--"}
+          isSelected={selectedCategory === category.toLowerCase()}
+        />
+      ))
+    }
+  </ul>
+</nav>

@@ -1,0 +1,25 @@
+---
+import type { GroupNoteType } from "src/helpers/arrayHelper";
+import { getPostUrl } from "src/utils/urlHelpers";
+import { format } from "date-fns";
+
+interface Props {
+  group: GroupNoteType;
+}
+
+const { group } = Astro.props;
+---
+
+<nav aria-label={`Notes of ${group.year}`} class="mb-12">
+  <h3>{group.year}</h3>
+  <ul class="flex flex-col gap-2 ">
+    {
+      group.items.map(({ slug, data: { title, updatedAt }}) => (
+        <li class="group flex flex-row justify-between items-center text-black-text dark:text-gray-200 ">
+          <a href={getPostUrl("digital-garden", slug)} class="group-hover:underline">{title}</a>
+          <span class="text-sm group-hover:underline hidden md:block">{format(new Date(updatedAt), "MMM dd, yyyy")}</span>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

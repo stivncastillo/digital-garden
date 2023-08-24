@@ -1,13 +1,13 @@
-import remarkToc from "remark-toc";
 import rehypeToc from "rehype-toc";
-import { remarkReadingTime } from './plugins/remark-reading-time.mjs';
+import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 export default {
   shikiConfig: {
-    theme: 'dracula',
+    theme: "dracula",
   },
-  remarkPlugins: [[remarkToc, { tight: true, ordered: true }], remarkReadingTime],
   rehypePlugins: [
+    rehypeHeadingIds,
     [
       rehypeToc,
       {
@@ -18,5 +18,6 @@ export default {
         },
       },
     ],
+    [rehypeAutolinkHeadings, { behavior: 'append' }]
   ],
 };

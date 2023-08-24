@@ -1,27 +1,24 @@
 ---
 import BaseHead from "../components/Layout/BaseHead.astro";
+import type { CollectionEntry } from "astro:content";
+import type { BreadcrumbItemType } from "@components/Layout/Breadcrumbs";
 import Footer from "../components/Layout/Footer.astro";
 import Navbar from "../components/Layout/Navbar.astro";
 import { format } from "date-fns";
 
-import type { MarkdownLayoutProps } from "astro";
-import type { PortfolioFrontMatter } from "../types";
-import SocialList from "@components/Home/SocialList";
-import ThemeScript from "@components/Layout/ThemeScript.astro";
+import SocialList from "../components/Home/SocialList";
+import ThemeScript from "../components/Layout/ThemeScript.astro";
+import Breadcrumbs from "@components/Layout/Breadcrumbs";
 
-type Props = MarkdownLayoutProps<PortfolioFrontMatter>;
+interface Props {
+  entry: CollectionEntry<"portfolio">;
+  breadcrumbs?: Array<BreadcrumbItemType>;
+};
 
 const {
-  frontmatter: {
-    title,
-    description,
-    publishedAt,
-    heroImage,
-    minutesRead,
-    lang = "en",
-  },
+  entry: {data: {lang, description, title, heroImage, publishedAt}},
+  breadcrumbs
 } = Astro.props;
-
 const date = publishedAt
   ? format(new Date(publishedAt), "MMMM dd, yyyy")
   : "--";
@@ -31,40 +28,35 @@ const date = publishedAt
   <head>
     <BaseHead
       title={title}
-      description={description}
+      description={description ?? ''}
       image={heroImage}
       contentType="article"
     />
   </head>
 
-  <body class="bg-white dark:bg-gray-900 text-slate-800 dark:text-slate-50">
+  <body class="bg-floral-white dark:bg-black text-black-text dark:text-white">
     <div class="flex flex-col m-auto h-screen">
       <Navbar />
 
-      <main
-        class="flex flex-col flex-1 mx-auto max-w-4xl pt-12 px-4 md:px-0 mb-4 flex-grow w-full"
-      >
+      <main class="flex flex-col flex-1 mx-auto max-w-4xl px-4 md:px-0 mt-2 mb-4 flex-grow w-full">
         <article class="mb-8">
           <header class="mb-8">
+            {
+              breadcrumbs?.length ? (
+                <Breadcrumbs items={breadcrumbs} client:load />
+              ) : null
+            }
             <h1 class="mb-2">{title}</h1>
             <p
-              class="mb-8 text-xl text-slate-500 dark:text-slate-400 leading-relaxed"
+              class="mb-8 text-xl text-gray-800 dark:text-gray-200 leading-relaxed"
             >
               {description}
             </p>
-            <div class="flex flex-row justify-between items-end">
-              <span class="text-sm text-slate-400">Stiven Castillo</span>
+            <div class="flex flex-row justify-between items-end border-b border-black dark:border-white pb-2">
+              <span class="text-sm text-gray-500 dark:text-gray-200">Stiven Castillo</span>
               <div class="flex flex-row items-center space-x-2">
-                <span class="dark:text-slate-500 text-slate-400 text-xs">
-                  {minutesRead}
-                </span>
-                <span class="text-slate-400 text-sm">{date}</span>
+                <span class="text-gray-500 dark:text-gray-200 text-sm">{date}</span>
               </div>
-            </div>
-
-            <div
-              class="h-1 my-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
-            >
             </div>
           </header>
           {
@@ -83,10 +75,10 @@ const date = publishedAt
             <slot />
           </div>
         </article>
-        <Footer />
       </main>
 
       <SocialList />
+      <Footer />
     </div>
     <ThemeScript />
   </body>
