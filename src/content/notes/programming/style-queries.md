@@ -6,6 +6,7 @@ updatedAt: 2023-06-07
 category: "Programming"
 author: "stiven-castillo"
 published: true
+lang: "EN"
 tags: ["css", "queries", "container"]
 ---
 

@@ -236,51 +236,72 @@ declare module 'astro:content' {
   collection: "notes";
   data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
-"design/Atomic Design.md": {
-	id: "design/Atomic Design.md";
+"design/atomic-design.md": {
+	id: "design/atomic-design.md";
   slug: "design/atomic-design";
   body: string;
   collection: "notes";
   data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
-"design/Designing for Web Accessibility.md": {
-	id: "design/Designing for Web Accessibility.md";
+"design/designing-for-web-accessibility.md": {
+	id: "design/designing-for-web-accessibility.md";
   slug: "design/designing-for-web-accessibility";
   body: string;
   collection: "notes";
   data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
-"design/Dieter Ram's 10 Principles of Good Design.md": {
-	id: "design/Dieter Ram's 10 Principles of Good Design.md";
-  slug: "design/dieter-rams-10-principles-of-good-design";
-  body: string;
-  collection: "notes";
-  data: InferEntrySchema<"notes">
-} & { render(): Render[".md"] };
-"design/Maneras de transmitir información.md": {
-	id: "design/Maneras de transmitir información.md";
-  slug: "design/maneras-de-transmitir-información";
-  body: string;
-  collection: "notes";
-  data: InferEntrySchema<"notes">
-} & { render(): Render[".md"] };
-"design/Micro-interactions and micro-animations.md": {
-	id: "design/Micro-interactions and micro-animations.md";
+"design/micro-interactions-and-micro-animations.md": {
+	id: "design/micro-interactions-and-micro-animations.md";
   slug: "design/micro-interactions-and-micro-animations";
   body: string;
   collection: "notes";
   data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
-"design/Why use a design system.md": {
-	id: "design/Why use a design system.md";
+"design/why-use-a-design-system.md": {
+	id: "design/why-use-a-design-system.md";
   slug: "design/why-use-a-design-system";
   body: string;
   collection: "notes";
   data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
-"life/disenar-un-hambiente-optimo.md": {
-	id: "life/disenar-un-hambiente-optimo.md";
-  slug: "life/disenar-un-hambiente-optimo";
+"life/disenar-un-ambiente.md": {
+	id: "life/disenar-un-ambiente.md";
+  slug: "life/disenar-un-ambiente";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/apis.md": {
+	id: "programming/apis.md";
+  slug: "programming/apis";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/call-apply-and-bind.md": {
+	id: "programming/call-apply-and-bind.md";
+  slug: "programming/call-apply-and-bind";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/closures.md": {
+	id: "programming/closures.md";
+  slug: "programming/closures";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/color-functions.md": {
+	id: "programming/color-functions.md";
+  slug: "programming/color-functions";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/container-query.md": {
+	id: "programming/container-query.md";
+  slug: "programming/container-query";
   body: string;
   collection: "notes";
   data: InferEntrySchema<"notes">
@@ -292,6 +313,41 @@ declare module 'astro:content' {
   collection: "notes";
   data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
+"programming/different-types-of-variables.md": {
+	id: "programming/different-types-of-variables.md";
+  slug: "programming/different-types-of-variables";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/domcontentloaded.md": {
+	id: "programming/domcontentloaded.md";
+  slug: "programming/domcontentloaded";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/first-contentful-paint.md": {
+	id: "programming/first-contentful-paint.md";
+  slug: "programming/first-contentful-paint";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/first-input-delay-fid.md": {
+	id: "programming/first-input-delay-fid.md";
+  slug: "programming/first-input-delay-fid";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/function-chaining.md": {
+	id: "programming/function-chaining.md";
+  slug: "programming/function-chaining";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
 "programming/functional-components-with-hooks.md": {
 	id: "programming/functional-components-with-hooks.md";
   slug: "programming/functional-components-with-hooks";
@@ -299,9 +355,114 @@ declare module 'astro:content' {
   collection: "notes";
   data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
-"programming/guard-clauses-javascript.md": {
-	id: "programming/guard-clauses-javascript.md";
-  slug: "programming/guard-clauses-javascript";
+"programming/generator-function.md": {
+	id: "programming/generator-function.md";
+  slug: "programming/generator-function";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/getters-and-setters.md": {
+	id: "programming/getters-and-setters.md";
+  slug: "programming/getters-and-setters";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/guard-clauses.md": {
+	id: "programming/guard-clauses.md";
+  slug: "programming/guard-clauses";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/higher-order-functions.md": {
+	id: "programming/higher-order-functions.md";
+  slug: "programming/higher-order-functions";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/hoisting.md": {
+	id: "programming/hoisting.md";
+  slug: "programming/hoisting";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/iife.md": {
+	id: "programming/iife.md";
+  slug: "programming/iife";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/implicit-type-coercion.md": {
+	id: "programming/implicit-type-coercion.md";
+  slug: "programming/implicit-type-coercion";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/inp-interaction-to-next-paint.md": {
+	id: "programming/inp-interaction-to-next-paint.md";
+  slug: "programming/inp-interaction-to-next-paint";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/object-destructuring.md": {
+	id: "programming/object-destructuring.md";
+  slug: "programming/object-destructuring";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/prototype-partten.md": {
+	id: "programming/prototype-partten.md";
+  slug: "programming/prototype-partten";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/script-type.md": {
+	id: "programming/script-type.md";
+  slug: "programming/script-type";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/spread-operator-and-rest-parameter.md": {
+	id: "programming/spread-operator-and-rest-parameter.md";
+  slug: "programming/spread-operator-and-rest-parameter";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/stop-using-usememo.md": {
+	id: "programming/stop-using-usememo.md";
+  slug: "programming/stop-using-usememo";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/style-queries.md": {
+	id: "programming/style-queries.md";
+  slug: "programming/style-queries";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/subgrid.md": {
+	id: "programming/subgrid.md";
+  slug: "programming/subgrid";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/tailwind-antipattern.md": {
+	id: "programming/tailwind-antipattern.md";
+  slug: "programming/tailwind-antipattern";
   body: string;
   collection: "notes";
   data: InferEntrySchema<"notes">

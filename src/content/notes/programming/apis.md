@@ -1,4 +1,3 @@
-
 ---
 title: "Javascript APIs"
 description: "Small description about some API's in Javascript"
