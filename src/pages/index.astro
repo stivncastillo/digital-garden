@@ -9,7 +9,9 @@ import { getCollection } from "astro:content";
 // const posts = (await Astro.glob<MarkdownInstance<FrontMatter>>('./blog/**/*.{md,mdx}')).sort(
 //   (a, b) => new Date(b.frontmatter.publishedAt).valueOf() - new Date(a.frontmatter.publishedAt).valueOf()
 // );
-const posts = await getCollection('blog');
+const posts = (await getCollection('blog')).sort((a, b) =>
+  Date.parse(`${b.data.publishedAt}`) - Date.parse(`${a.data.publishedAt}`)
+).slice(0, 3);
 const notes = await getCollection('notes');
 const talks = await getCollection('talks');
 

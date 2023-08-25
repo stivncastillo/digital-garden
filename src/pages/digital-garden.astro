@@ -8,7 +8,7 @@ import NotesSection from "@components/DigitalGarden/NotesSection.astro";
 const notes = (await getCollection("notes", (note) => {
   return note.data.published;
 })).sort(
-  (a, b) => Date.parse(`${b.data.publishedAt}`) - Date.parse(`${a.data.publishedAt}`)
+  (a, b) => Date.parse(`${b.data.updatedAt}`) - Date.parse(`${a.data.updatedAt}`)
 );
 
 
