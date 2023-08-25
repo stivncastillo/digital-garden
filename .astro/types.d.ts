@@ -20,7 +20,9 @@ declare module 'astro:content' {
 
 declare module 'astro:content' {
 	export { z } from 'astro/zod';
-	export type CollectionEntry<C extends keyof AnyEntryMap> = AnyEntryMap[C][keyof AnyEntryMap[C]];
+
+	type Flatten<T> = T extends { [K: string]: infer U } ? U : never;
+	export type CollectionEntry<C extends keyof AnyEntryMap> = Flatten<AnyEntryMap[C]>;
 
 	// TODO: Remove this when having this fallback is no longer relevant. 2.3? 3.0? - erika, 2023-04-04
 	/**
@@ -61,12 +63,9 @@ declare module 'astro:content' {
 
 	type BaseSchemaWithoutEffects =
 		| import('astro/zod').AnyZodObject
-		| import('astro/zod').ZodUnion<import('astro/zod').AnyZodObject[]>
+		| import('astro/zod').ZodUnion<[BaseSchemaWithoutEffects, ...BaseSchemaWithoutEffects[]]>
 		| import('astro/zod').ZodDiscriminatedUnion<string, import('astro/zod').AnyZodObject[]>
-		| import('astro/zod').ZodIntersection<
-				import('astro/zod').AnyZodObject,
-				import('astro/zod').AnyZodObject
-		  >;
+		| import('astro/zod').ZodIntersection<BaseSchemaWithoutEffects, BaseSchemaWithoutEffects>;
 
 	type BaseSchema =
 		| BaseSchemaWithoutEffects
@@ -204,28 +203,28 @@ declare module 'astro:content' {
   slug: "how-build-my-digital-garden";
   body: string;
   collection: "blog";
-  data: any
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "solid-principles.md": {
 	id: "solid-principles.md";
   slug: "solid-principles";
   body: string;
   collection: "blog";
-  data: any
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "tailwindcss-anti-pattern.md": {
 	id: "tailwindcss-anti-pattern.md";
   slug: "tailwindcss-anti-pattern";
   body: string;
   collection: "blog";
-  data: any
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "what-is-digital-gardens.md": {
 	id: "what-is-digital-gardens.md";
   slug: "what-is-digital-gardens";
   body: string;
   collection: "blog";
-  data: any
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 };
 "notes": {
@@ -234,252 +233,252 @@ declare module 'astro:content' {
   slug: "books/fragmento-de-el-hombre-rebelde";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "design/10-usability-principles-to-improve-ui-design.md": {
 	id: "design/10-usability-principles-to-improve-ui-design.md";
   slug: "design/10-usability-principles-to-improve-ui-design";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "design/atomic-design.md": {
 	id: "design/atomic-design.md";
   slug: "design/atomic-design";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "design/designing-for-web-accessibility.md": {
 	id: "design/designing-for-web-accessibility.md";
   slug: "design/designing-for-web-accessibility";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "design/micro-interactions-and-micro-animations.md": {
 	id: "design/micro-interactions-and-micro-animations.md";
   slug: "design/micro-interactions-and-micro-animations";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "design/why-use-a-design-system.md": {
 	id: "design/why-use-a-design-system.md";
   slug: "design/why-use-a-design-system";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "life/disenar-un-ambiente.md": {
 	id: "life/disenar-un-ambiente.md";
   slug: "life/disenar-un-ambiente";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/apis.md": {
 	id: "programming/apis.md";
   slug: "programming/apis";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/call-apply-and-bind.md": {
 	id: "programming/call-apply-and-bind.md";
   slug: "programming/call-apply-and-bind";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/closures.md": {
 	id: "programming/closures.md";
   slug: "programming/closures";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/color-functions.md": {
 	id: "programming/color-functions.md";
   slug: "programming/color-functions";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/container-query.md": {
 	id: "programming/container-query.md";
   slug: "programming/container-query";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/css-recipes.md": {
 	id: "programming/css-recipes.md";
   slug: "programming/css-recipes";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/different-types-of-variables.md": {
 	id: "programming/different-types-of-variables.md";
   slug: "programming/different-types-of-variables";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/domcontentloaded.md": {
 	id: "programming/domcontentloaded.md";
   slug: "programming/domcontentloaded";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/first-contentful-paint.md": {
 	id: "programming/first-contentful-paint.md";
   slug: "programming/first-contentful-paint";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/first-input-delay-fid.md": {
 	id: "programming/first-input-delay-fid.md";
   slug: "programming/first-input-delay-fid";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/function-chaining.md": {
 	id: "programming/function-chaining.md";
   slug: "programming/function-chaining";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/functional-components-with-hooks.md": {
 	id: "programming/functional-components-with-hooks.md";
   slug: "programming/functional-components-with-hooks";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/generator-function.md": {
 	id: "programming/generator-function.md";
   slug: "programming/generator-function";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/getters-and-setters.md": {
 	id: "programming/getters-and-setters.md";
   slug: "programming/getters-and-setters";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/guard-clauses.md": {
 	id: "programming/guard-clauses.md";
   slug: "programming/guard-clauses";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/higher-order-functions.md": {
 	id: "programming/higher-order-functions.md";
   slug: "programming/higher-order-functions";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/hoisting.md": {
 	id: "programming/hoisting.md";
   slug: "programming/hoisting";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/iife.md": {
 	id: "programming/iife.md";
   slug: "programming/iife";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/implicit-type-coercion.md": {
 	id: "programming/implicit-type-coercion.md";
   slug: "programming/implicit-type-coercion";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/inp-interaction-to-next-paint.md": {
 	id: "programming/inp-interaction-to-next-paint.md";
   slug: "programming/inp-interaction-to-next-paint";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/object-destructuring.md": {
 	id: "programming/object-destructuring.md";
   slug: "programming/object-destructuring";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/prototype-partten.md": {
 	id: "programming/prototype-partten.md";
   slug: "programming/prototype-partten";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/script-type.md": {
 	id: "programming/script-type.md";
   slug: "programming/script-type";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/spread-operator-and-rest-parameter.md": {
 	id: "programming/spread-operator-and-rest-parameter.md";
   slug: "programming/spread-operator-and-rest-parameter";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/stop-using-usememo.md": {
 	id: "programming/stop-using-usememo.md";
   slug: "programming/stop-using-usememo";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/style-queries.md": {
 	id: "programming/style-queries.md";
   slug: "programming/style-queries";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/subgrid.md": {
 	id: "programming/subgrid.md";
   slug: "programming/subgrid";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/tailwind-antipattern.md": {
 	id: "programming/tailwind-antipattern.md";
   slug: "programming/tailwind-antipattern";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 "programming/typescript.md": {
 	id: "programming/typescript.md";
   slug: "programming/typescript";
   body: string;
   collection: "notes";
-  data: any
+  data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
 };
 "portfolio": {
@@ -488,70 +487,70 @@ declare module 'astro:content' {
   slug: "aloveci-design";
   body: string;
   collection: "portfolio";
-  data: any
+  data: InferEntrySchema<"portfolio">
 } & { render(): Render[".mdx"] };
 "backend-meli-test.mdx": {
 	id: "backend-meli-test.mdx";
   slug: "backend-meli-test";
   body: string;
   collection: "portfolio";
-  data: any
+  data: InferEntrySchema<"portfolio">
 } & { render(): Render[".mdx"] };
 "comments-section.mdx": {
 	id: "comments-section.mdx";
   slug: "comments-section";
   body: string;
   collection: "portfolio";
-  data: any
+  data: InferEntrySchema<"portfolio">
 } & { render(): Render[".mdx"] };
 "covid-status-app.mdx": {
 	id: "covid-status-app.mdx";
   slug: "covid-status-app";
   body: string;
   collection: "portfolio";
-  data: any
+  data: InferEntrySchema<"portfolio">
 } & { render(): Render[".mdx"] };
 "digital-garden.mdx": {
 	id: "digital-garden.mdx";
   slug: "digital-garden";
   body: string;
   collection: "portfolio";
-  data: any
+  data: InferEntrySchema<"portfolio">
 } & { render(): Render[".mdx"] };
 "family-tracker-design.mdx": {
 	id: "family-tracker-design.mdx";
   slug: "family-tracker-design";
   body: string;
   collection: "portfolio";
-  data: any
+  data: InferEntrySchema<"portfolio">
 } & { render(): Render[".mdx"] };
 "la-manicurista-new-design.mdx": {
 	id: "la-manicurista-new-design.mdx";
   slug: "la-manicurista-new-design";
   body: string;
   collection: "portfolio";
-  data: any
+  data: InferEntrySchema<"portfolio">
 } & { render(): Render[".mdx"] };
 "mi-derecho-de-peticion.mdx": {
 	id: "mi-derecho-de-peticion.mdx";
   slug: "mi-derecho-de-peticion";
   body: string;
   collection: "portfolio";
-  data: any
+  data: InferEntrySchema<"portfolio">
 } & { render(): Render[".mdx"] };
 "planning-poker.mdx": {
 	id: "planning-poker.mdx";
   slug: "planning-poker";
   body: string;
   collection: "portfolio";
-  data: any
+  data: InferEntrySchema<"portfolio">
 } & { render(): Render[".mdx"] };
 "spotify-single-clone.mdx": {
 	id: "spotify-single-clone.mdx";
   slug: "spotify-single-clone";
   body: string;
   collection: "portfolio";
-  data: any
+  data: InferEntrySchema<"portfolio">
 } & { render(): Render[".mdx"] };
 };
 
@@ -562,34 +561,34 @@ declare module 'astro:content' {
 "stiven-castillo": {
 	id: "stiven-castillo";
   collection: "authors";
-  data: any
+  data: InferEntrySchema<"authors">
 };
 };
 "talks": {
 "design-system": {
 	id: "design-system";
   collection: "talks";
-  data: any
+  data: InferEntrySchema<"talks">
 };
 "island-arquitecture": {
 	id: "island-arquitecture";
   collection: "talks";
-  data: any
+  data: InferEntrySchema<"talks">
 };
 "mon-i-wanna-be-a-developer": {
 	id: "mon-i-wanna-be-a-developer";
   collection: "talks";
-  data: any
+  data: InferEntrySchema<"talks">
 };
 "react-state-patterns": {
 	id: "react-state-patterns";
   collection: "talks";
-  data: any
+  data: InferEntrySchema<"talks">
 };
 "tailwind-workshop": {
 	id: "tailwind-workshop";
   collection: "talks";
-  data: any
+  data: InferEntrySchema<"talks">
 };
 };
 
@@ -597,5 +596,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	type ContentConfig = never;
+	type ContentConfig = typeof import("../src/content/config");
 }

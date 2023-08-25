@@ -16,7 +16,7 @@ interface Props {
 };
 
 const {
-  entry: {data: { title, description, publishedAt, lang }},
+  entry: {data: { title, description, publishedAt, lang, heroImage }},
   breadcrumbs
 } = Astro.props;
 
@@ -30,7 +30,7 @@ const date = publishedAt
     <BaseHead
       title={title}
       description={description ?? 'no-description'}
-      image={""}
+      image={heroImage ?? ""}
       contentType="article"
     />
   </head>
