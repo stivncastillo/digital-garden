@@ -1,8 +1,8 @@
 ---
 title: "Micro-interactions and micro-animations"
 description: "Micro-interactions and micro-animations"
-publishedAt: 2023-06-07
-updatedAt: 2023-06-07
+publishedAt: 2023-07-03
+updatedAt: 2023-07-03
 category: "Design"
 author: "stiven-castillo"
 published: true

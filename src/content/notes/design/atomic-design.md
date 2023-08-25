@@ -10,7 +10,7 @@ lang: "EN"
 tags: ["design-systems", "atomic", "ui"]
 ---
 
-Atomic design system is a design methodology first coined by Brad Frost that's inspiread by chemistry. It described a simple model for constructing interfaces made of smaller elements that fit together and form bigger blocks and larger components to create complete and polished designs
+Atomic design system is a design methodology first coined by Brad Frost that's inspired by chemistry. It described a simple model for constructing interfaces made of smaller elements that fit together and form bigger blocks and larger components to create complete and polished designs
 
 It is a systematic approach that breaks down a UI into its fundamental building blocks, called atoms, and then progressively combines them to form more complex components and ultimately complete interface systems.
 

@@ -12,7 +12,7 @@ tags: ["life", "habits"]
 
 Una de las mejores maneras de obtener nuevos hábitos es actualizando el ambiente en el que mantengo, servirá como un espacio de muchas señales de hábitos que quiero implementar y seguir haciendo.
 
-Por ejemplo: si quiero empezar a ilustrar más, voy a organizar un espacio de dibujo, en dónde tenga los lapices, hojas, colores, pinturas a la mano. Esto será una buena señal para empezar a realizar dicho hábito.
+Por ejemplo: si quiero empezar a ilustrar más, voy a organizar un espacio de dibujo, en dónde tenga los lápices, hojas, colores, pinturas a la mano. Esto será una buena señal para empezar a realizar dicho hábito.
 
 -   Si quieres leer antes de dormir, deja el libro en la almohada
 -   Si quieres tomar más agua, deja varias botellas llenas al rededor de tu casa
@@ -23,4 +23,4 @@ Uno de los métodos más prácticos de eliminar un hábito negativo es reducir l
 
 -   Dejar el celular en otra habitación durante el horario laboral, te hace avanzar mejor en tu trabajo
 -   Para aumentar tu autoestima deja de consumir redes sociales
--   Si estás jugando mucho play, desconectala y guardala en el closet
+-   Si estás jugando mucho play, desconéctala y guardala en el closet

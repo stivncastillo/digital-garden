@@ -1,6 +1,6 @@
 ---
 title: "Why use a design system?"
-description: "Why use a design system?"
+description: "The main benefit of design systems is their ability to replicate designs by using premade UI components and element"
 publishedAt: 2023-06-07
 updatedAt: 2023-06-07
 category: "Design"

@@ -4,10 +4,9 @@ description: "Una pequeña frase que me inspiró en un momento de mi vida"
 publishedAt: 2023-08-10
 updatedAt: 2023-08-10
 category: "Books"
-subcategory: ""
 author: "stiven-castillo"
 published: true
-lang: "ES"
+lang: "EN"
 tags: ["life", "phrase"]
 ---
 

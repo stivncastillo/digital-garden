@@ -1,8 +1,8 @@
 ---
-title: "10 Usability Principles"
+title: "10 Usability Principles to Improve UI Design"
 description: "Jakob Nielsen's Heuristics"
 publishedAt: 2023-06-07
-updatedAt: 2023-06-07
+updatedAt: 2023-08-24
 category: "Design"
 author: "stiven-castillo"
 published: true
