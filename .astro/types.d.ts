@@ -292,6 +292,13 @@ declare module 'astro:content' {
   collection: "notes";
   data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
+"programming/functional-components-with-hooks.md": {
+	id: "programming/functional-components-with-hooks.md";
+  slug: "programming/functional-components-with-hooks";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
 "programming/guard-clauses-javascript.md": {
 	id: "programming/guard-clauses-javascript.md";
   slug: "programming/guard-clauses-javascript";

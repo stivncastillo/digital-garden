@@ -3,7 +3,11 @@ import Post from '@components/Blog/Post';
 import PageLayout from '@layouts/PageLayout.astro';
 import { CollectionEntry, getCollection } from 'astro:content';
 
-const posts = await getCollection('blog', (post => post.data.published));
+const posts = (await getCollection('blog', (post => post.data.published))).sort(
+  (a, b) =>
+    Date.parse(`${b.data.publishedAt}`) - Date.parse(`${a.data.publishedAt}`)
+);
+
 const breadcrumbs = [
   { name: "Home", url: "/" },
   { name: "Blog", url: "/blog" },

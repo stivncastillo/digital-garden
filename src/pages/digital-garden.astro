@@ -5,9 +5,12 @@ import PageLayout from "@layouts/PageLayout.astro";
 import { groupNotes } from "src/helpers/arrayHelper";
 import NotesSection from "@components/DigitalGarden/NotesSection.astro";
 
-const notes = await getCollection("notes", (note) => {
+const notes = (await getCollection("notes", (note) => {
   return note.data.published;
-});
+})).sort(
+  (a, b) => Date.parse(`${b.data.publishedAt}`) - Date.parse(`${a.data.publishedAt}`)
+);
+
 
 const groupedNotes = groupNotes(notes);
 const uniqueCategories: Array<string> = [...new Set(notes.map((note) => note.data.category).flat())];
