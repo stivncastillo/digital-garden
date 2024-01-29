@@ -8,7 +8,9 @@ interface Props {
 }
 
 const { talks } = Astro.props;
-const videos = talks.filter((talk: any) => talk.videoId !== "").splice(0, 2);
+const videos = talks.filter((talk: any) => talk.data.videoId !== "").sort(
+  (a, b) => Date.parse(b.data.date.toISOString()) - Date.parse(a.data.date.toISOString())
+).splice(0, 2);
 const videosTitle = videos.map((talk: any) => talk.data.title)
 const restTalks = talks.filter((talk: any) => !videosTitle.includes(talk.data.title) );
 ---

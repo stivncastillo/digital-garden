@@ -312,6 +312,13 @@ declare module 'astro:content' {
   collection: "notes";
   data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
+"programming/context-for-global-state-management.md": {
+	id: "programming/context-for-global-state-management.md";
+  slug: "programming/context-for-global-state-management";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
 "programming/css-recipes.md": {
 	id: "programming/css-recipes.md";
   slug: "programming/css-recipes";
@@ -417,6 +424,13 @@ declare module 'astro:content' {
   collection: "notes";
   data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
+"programming/javascript-sets.md": {
+	id: "programming/javascript-sets.md";
+  slug: "programming/javascript-sets";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
 "programming/object-destructuring.md": {
 	id: "programming/object-destructuring.md";
   slug: "programming/object-destructuring";
@@ -438,9 +452,23 @@ declare module 'astro:content' {
   collection: "notes";
   data: InferEntrySchema<"notes">
 } & { render(): Render[".md"] };
+"programming/separate-business-logic-from-ui-components.md": {
+	id: "programming/separate-business-logic-from-ui-components.md";
+  slug: "programming/separate-business-logic-from-ui-components";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
 "programming/spread-operator-and-rest-parameter.md": {
 	id: "programming/spread-operator-and-rest-parameter.md";
   slug: "programming/spread-operator-and-rest-parameter";
+  body: string;
+  collection: "notes";
+  data: InferEntrySchema<"notes">
+} & { render(): Render[".md"] };
+"programming/stop-using-return-null.md": {
+	id: "programming/stop-using-return-null.md";
+  slug: "programming/stop-using-return-null";
   body: string;
   collection: "notes";
   data: InferEntrySchema<"notes">
@@ -577,6 +605,11 @@ declare module 'astro:content' {
 };
 "mon-i-wanna-be-a-developer": {
 	id: "mon-i-wanna-be-a-developer";
+  collection: "talks";
+  data: InferEntrySchema<"talks">
+};
+"react-server-components": {
+	id: "react-server-components";
   collection: "talks";
   data: InferEntrySchema<"talks">
 };
