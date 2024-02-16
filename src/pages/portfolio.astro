@@ -8,6 +8,7 @@ import { getCollection } from "astro:content";
 const items = (await getCollection("portfolio")).sort(
   (a, b) => Date.parse(`${b.data.publishedAt}`) - Date.parse(`${a.data.publishedAt}`)
 );
+console.log("👻 ~ items:", items);
 
 const breadcrumbs = [
   { name: "Home", url: "/" },
@@ -25,8 +26,9 @@ const breadcrumbs = [
     <div class="columns-1 md:columns-3 gap-4 mb-6">
       {
         items.map((item) => {
-          if (!item.data.link) return <PortfolioItem data={item} client:only />;
-          if (item.data.link) return <PortfolioItemLink data={item} client:only />;
+          // return <h1>{item.data.title}</h1>
+          if (!item.data.link) return <PortfolioItem data={item} />;
+          if (item.data.link) return <PortfolioItemLink data={item} />;
         })
       }
     </div>

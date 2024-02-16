@@ -7,8 +7,9 @@ import {
   BiLogoTailwindCss,
   BiLogoPhp,
   BiLogoSass,
+  BiLogoPostgresql,
 } from "react-icons/bi";
-import { SiAstro, SiLaravel } from "react-icons/si";
+import { SiAstro, SiLaravel, SiNextdotjs } from "react-icons/si";
 
 export const BRAND_ICONS = {
   vuejs: (props: any) => <BiLogoVuejs {...props} />,
@@ -22,4 +23,6 @@ export const BRAND_ICONS = {
   laravel: (props: any) => <SiLaravel {...props} />,
   php: (props: any) => <BiLogoPhp {...props} />,
   sass: (props: any) => <BiLogoSass {...props} />,
+  nextjs: (props: any) => <SiNextdotjs {...props} />,
+  postgres: (props: any) => <BiLogoPostgresql {...props} />,
 };

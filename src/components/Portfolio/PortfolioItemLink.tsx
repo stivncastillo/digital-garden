@@ -1,8 +1,7 @@
 import React from "react";
 
-import PortfolioTag from "./PortfolioTag";
 import type { CollectionEntry } from "astro:content";
-import { BRAND_ICONS } from "src/helpers/brandIcons";
+// import { BRAND_ICONS } from "src/helpers/brandIcons";
 
 interface Props {
   data: CollectionEntry<"portfolio">;
@@ -31,18 +30,27 @@ const PortfolioItemLink = ({ data }: Props) => {
 
             <p className="text-sm !text-white">{description}</p>
 
-            <div className="flex flex-row justify-between items-center text-white">
-              <span className="text-xs ">{year}</span>
+            <div className="flex flex-col justify-between items-start gap-4 flex-1">
+              <span className="text-xs text-white dark:text-white">{year}</span>
 
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {tags?.map((tag: string, index: number) => {
-                  // @ts-ignore
-                  const Component = BRAND_ICONS[tag];
                   return (
-                    <span title={tag}>
-                      <Component key={index} className=" text-xl" />
+                    <span
+                      title={tag}
+                      key={index}
+                      className={`bg-white  text-black border border-black text-xs font-medium px-2.5 py-0.5 rounded`}
+                    >
+                      {tag}
                     </span>
                   );
+                  // // @ts-ignore
+                  // const Component = BRAND_ICONS[tag];
+                  // return (
+                  //   <span title={tag}>
+                  //     <Component key={index} className=" text-xl" />
+                  //   </span>
+                  // );
                 })}
               </div>
             </div>
